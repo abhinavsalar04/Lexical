@@ -6,8 +6,10 @@
 
 #root {
     margin: 0 auto;
-    padding: 2rem;
-    /* text-align: center; */
-    width: 100vw;
-    /* height: 100vh; */
+    padding: 0.5rem;
+    margin: 1rem auto;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 10px;
 }
+

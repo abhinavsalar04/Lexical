@@ -9,12 +9,14 @@ import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import SubscriptIcon from '@mui/icons-material/Subscript';
 import SuperscriptIcon from '@mui/icons-material/Superscript';
 import CodeIcon from '@mui/icons-material/Code';
+import LinkIcon from '@mui/icons-material/Link';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {CodeHighlightNode, CodeNode} from "@lexical/code";
-import {LinkNode} from "@lexical/link";
+import {LinkNode, AutoLinkNode} from "@lexical/link";
 import {ListItemNode, ListNode} from "@lexical/list";
 import {HeadingNode, QuoteNode} from "@lexical/rich-text";
 import {HorizontalRuleNode} from '@lexical/react/LexicalHorizontalRuleNode';
+import { createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
 
 export const theme = {
     blockCursor: 'blockCursor',
@@ -121,7 +123,7 @@ export const EDITOR_NODES = [
     CodeNode,
     CodeHighlightNode,
     HeadingNode,
-    // AutoLinkNode,
+    AutoLinkNode,
     LinkNode,
     QuoteNode,
     ListNode,
@@ -146,6 +148,14 @@ export const initialConfig= {
     // editable: false,
 };
 
+const URL_REGEX = /((https?:\/\/(www\.)?)|(www\.))[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
+
+export const MATCHERS = [
+    createLinkMatcherWithRegExp(URL_REGEX, (text) => {
+      return text.startsWith('http') ? text : `https://${text}`;
+    }),
+  ]
+
 export const blockTypeToBlockName = {
     bullet: 'Bulleted List',
     check: 'Check List',
@@ -169,6 +179,7 @@ export const initialHasFormat = {
     subscript: false,
     superscript: false,
     code: false,
+    link: false,
     highlight: false,
 }
 

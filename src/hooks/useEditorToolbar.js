@@ -34,7 +34,6 @@ const useEditorToolbar = () => {
     // This function runs every time the editor state changes.
     const updateToolbar = useCallback(() => {
         const selection = $getSelection();
-
         if ($isRangeSelection(selection)) {
             const anchorNode = selection.anchor.getNode();
             let element =
@@ -60,6 +59,7 @@ const useEditorToolbar = () => {
                 subscript: selection.hasFormat('subscript'),
                 superscript: selection.hasFormat('superscript'),
                 code: selection.hasFormat('code'),
+                link: selection.hasFormat('link'),
                 highlight: selection.hasFormat('highlight'),
             });
 
@@ -125,8 +125,7 @@ const useEditorToolbar = () => {
 
     const insertLink = useCallback(() => {
         if (!isLink) {
-            console.log("TOGGLE_LINK_COMMAND");
-            editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+            editor.dispatchCommand(TOGGLE_LINK_COMMAND, "https://");
         } else {
             editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
         }
@@ -176,6 +175,8 @@ const useEditorToolbar = () => {
         hasFormat,
         isEditorEmpty,
         blockType,
+        isLink,
+        setIsLink,
         insertLink,
         insertHorizontalRule,
         clearFormatting,

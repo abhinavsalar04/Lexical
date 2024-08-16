@@ -13,11 +13,12 @@ import HtmlToLexicalPlugin from "../plugins/HtmlToLexicalPlugin"
 import Stack from "@mui/material/Stack";
 import Placeholder from '../components/Placeholder/Placeholder';
 import CodeHighlightPlugin from '../plugins/CodeHighlightPlugin';
-import {initialConfig} from "../constants";
+import {initialConfig, MATCHERS} from "../constants";
 import editorStyles from "./styles";
+import { AutoLinkPlugin } from '@lexical/react/LexicalAutoLinkPlugin';
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 
 export const RichTextEditor = ({content, setContent}) => {
-
     return (
         <LexicalComposer
             initialConfig={{...initialConfig}}
@@ -31,11 +32,13 @@ export const RichTextEditor = ({content, setContent}) => {
                 />
                 <CodeHighlightPlugin />
                 <LexicalToHtmlPlugin 
-                    onHtmlChanged={(html) => {console.log(html); setContent(html)}}    
+                    onHtmlChanged={(html) => {setContent(html)}}    
                 />
+                <AutoLinkPlugin matchers={MATCHERS} />
                 <HtmlToLexicalPlugin content={content} />
                 <HistoryPlugin/>
                 <ListPlugin/>
+                <LinkPlugin />
                 <HorizontalRulePlugin />
                 <CheckListPlugin/>
             </Stack>

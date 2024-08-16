@@ -5,6 +5,7 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import StrikethroughSIcon from '@mui/icons-material/StrikethroughS';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import LinkIcon from '@mui/icons-material/Link';
 import CodeIcon from '@mui/icons-material/Code';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
@@ -26,6 +27,8 @@ import useCustomCommands from "../../hooks/useCustomCommands";
 import useColorPicker from "../../hooks/useColorPicker";
 import toolbarStyles from "./styles";
 import {getActiveBtnStyle} from "../../utils";
+import FloatingLinkEditor from '../FloatingLinkEditor';
+import { createPortal } from 'react-dom';
 
 const Toolbar = ({editable}) => {
     const [editor] = useLexicalComposerContext();
@@ -33,6 +36,9 @@ const Toolbar = ({editable}) => {
         hasFormat,
         isEditorEmpty,
         blockType,
+        isLink,
+        setIsLink,
+        insertLink,
         clearFormatting,
     } = useEditorToolbar();
 
@@ -111,6 +117,18 @@ const Toolbar = ({editable}) => {
                     <CodeIcon/>
                 </IconButton>
             </Tooltip>
+            <Tooltip title={"Insert link"}>
+                <IconButton 
+                    size='small'
+                    sx={getActiveBtnStyle(hasFormat.link)}
+                    onClick={insertLink}
+                 >
+                    <LinkIcon />
+                 </IconButton>
+            </Tooltip>
+            {isLink &&
+                createPortal(<FloatingLinkEditor editor={editor} />, document.body)
+            }
             <ColorPicker
                 key="color-picker"
                 title="Font color"

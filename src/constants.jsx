@@ -9,7 +9,6 @@ import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import SubscriptIcon from '@mui/icons-material/Subscript';
 import SuperscriptIcon from '@mui/icons-material/Superscript';
 import CodeIcon from '@mui/icons-material/Code';
-import LinkIcon from '@mui/icons-material/Link';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {CodeHighlightNode, CodeNode} from "@lexical/code";
 import {LinkNode, AutoLinkNode} from "@lexical/link";

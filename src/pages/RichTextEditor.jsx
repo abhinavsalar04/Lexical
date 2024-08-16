@@ -17,6 +17,7 @@ import {initialConfig, MATCHERS} from "../constants";
 import editorStyles from "./styles";
 import { AutoLinkPlugin } from '@lexical/react/LexicalAutoLinkPlugin';
 import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
+import {ImagePlugin} from "../plugins/ImagePlugin"
 
 export const RichTextEditor = ({content, setContent}) => {
     return (
@@ -39,6 +40,7 @@ export const RichTextEditor = ({content, setContent}) => {
                 <HistoryPlugin/>
                 <ListPlugin/>
                 <LinkPlugin />
+                <ImagePlugin captionsEnabled={false} />
                 <HorizontalRulePlugin />
                 <CheckListPlugin/>
             </Stack>

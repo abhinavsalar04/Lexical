@@ -17,6 +17,8 @@ import {$selectAll} from '@lexical/selection';
 import {$isHeadingNode} from '@lexical/rich-text';
 import {$isCodeNode, CODE_LANGUAGE_MAP} from '@lexical/code';
 import getSelectedNode from "../utils/getSelectedNode";
+import useModal from "./useModal";
+import { InsertImageDialog } from "../plugins/ImagePlugin";
 
 
 const useEditorToolbar = () => {
@@ -26,6 +28,7 @@ const useEditorToolbar = () => {
     const [hasFormat, setHasFormat] = useState(initialHasFormat);
     const [isEditorEmpty, setIsEditorEmpty] = useState(false);
     const [blockType, setBlockType] = useState('paragraph');
+    const [modal, showModal] = useModal()
     const [selectedElementKey, setSelectedElementKey] = useState(null);
     const [codeLanguage, setCodeLanguage] = useState("");
     const [isLink, setIsLink] = useState(false);
@@ -137,7 +140,7 @@ const useEditorToolbar = () => {
             undefined,
         );
     }
-
+        
     useEffect(() => {
         return mergeRegister(
             editor.registerUpdateListener(({editorState}) => {
@@ -170,8 +173,10 @@ const useEditorToolbar = () => {
             }
         });
     }, [editor]);
-
+    
     return {
+        modal, 
+        showModal,
         hasFormat,
         isEditorEmpty,
         blockType,

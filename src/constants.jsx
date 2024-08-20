@@ -13,9 +13,15 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {CodeHighlightNode, CodeNode} from "@lexical/code";
 import {LinkNode, AutoLinkNode} from "@lexical/link";
 import {ListItemNode, ListNode} from "@lexical/list";
+import {ImageNode} from "./CustomNodes/ImageNode/index"
 import {HeadingNode, QuoteNode} from "@lexical/rich-text";
 import {HorizontalRuleNode} from '@lexical/react/LexicalHorizontalRuleNode';
 import { createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
+import {TableNode, TableCellNode, TableRowNode} from "@lexical/table"
+import { PageBreakNode } from "./CustomNodes/PageBreakNode/PageBreakNode";
+import { CollapsibleTitleNode } from "./CustomNodes/CollapsibleContainer/CollapsibleTitleNode";
+import { CollapsibleContainerNode } from "./CustomNodes/CollapsibleContainer/CollapsibleContainerNode";
+import { CollapsibleContentNode } from "./CustomNodes/CollapsibleContainer/CollapsibleContentNode";
 
 export const theme = {
     blockCursor: 'blockCursor',
@@ -127,6 +133,14 @@ export const EDITOR_NODES = [
     QuoteNode,
     ListNode,
     ListItemNode,
+    ImageNode,
+    TableNode,
+    TableCellNode,
+    TableRowNode,
+    PageBreakNode,
+    CollapsibleTitleNode,
+    CollapsibleContainerNode,
+    CollapsibleContentNode,
     HorizontalRuleNode,
 ];
 

@@ -18,6 +18,9 @@ import editorStyles from "./styles";
 import { AutoLinkPlugin } from '@lexical/react/LexicalAutoLinkPlugin';
 import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import {ImagePlugin} from "../plugins/ImagePlugin"
+import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
+import PageBreakPlugin from '../plugins/PageBreakPlugin';
+import CollapsiblePlugin from '../plugins/CollapsiblePlugin';
 
 export const RichTextEditor = ({content, setContent}) => {
     return (
@@ -40,6 +43,9 @@ export const RichTextEditor = ({content, setContent}) => {
                 <HistoryPlugin/>
                 <ListPlugin/>
                 <LinkPlugin />
+                <TablePlugin/>
+                <PageBreakPlugin />
+                <CollapsiblePlugin />
                 <ImagePlugin captionsEnabled={false} />
                 <HorizontalRulePlugin />
                 <CheckListPlugin/>

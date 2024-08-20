@@ -8,19 +8,15 @@ import AddIcon from '@mui/icons-material/Add';
 import useInsertMenu from "../../hooks/useInsertMenu";
 import {getMenuButtonStyle} from "../../utils";
 import {useMediaQuery} from "@mui/material";
-
+import useEditorToolbar from '../../hooks/useEditorToolbar';
 const InsertMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-
     const isMdViewport = useMediaQuery('(min-width:960px)');
-
     const handleClickIconButton = (event) => setAnchorEl(event.currentTarget);
-
     const handleClose = () => setAnchorEl(null);
-
     const {insertMenuItems} = useInsertMenu();
-
+    const {modal} = useEditorToolbar()
     return (
         <>
             <Button
@@ -52,6 +48,11 @@ const InsertMenu = () => {
                         key={index}
                         onClick={() => {
                             handleClose();
+                            // if(option?._id === "IMAGE"){
+                            //     showModal("Insert Image", (onClose) => (
+                            //         <InsertImageDialog activeEditor={editor} onClose={onClose} />
+                            //     ))
+                            // }
                             option.onClick();
                         }}
                     >
@@ -61,6 +62,7 @@ const InsertMenu = () => {
                         {option.name}
                     </MenuItem>
                 ))}
+                {modal}
             </Menu>
         </>
     );

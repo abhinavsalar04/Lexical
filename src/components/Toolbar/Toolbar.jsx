@@ -30,14 +30,15 @@ import {getActiveBtnStyle} from "../../utils";
 import FloatingLinkEditor from '../FloatingLinkEditor';
 import { createPortal } from 'react-dom';
 
+
 const Toolbar = ({editable}) => {
     const [editor] = useLexicalComposerContext();
     const {
+        modal,
         hasFormat,
         isEditorEmpty,
         blockType,
         isLink,
-        setIsLink,
         insertLink,
         clearFormatting,
     } = useEditorToolbar();
@@ -50,9 +51,9 @@ const Toolbar = ({editable}) => {
     }
 
     const {onFontColorSelect, onBgColorSelect } = useColorPicker();
-
     if (!editable) return null;
-
+    
+    
     return (
         <Stack direction="row" gap={1} sx={toolbarStyles.root}>
             <Tooltip title="Undo (Ctrl + Z)">
@@ -161,6 +162,7 @@ const Toolbar = ({editable}) => {
                     <DeleteOutlineIcon/>
                 </IconButton>
             </Tooltip>
+            {modal} 
         </Stack>
     );
 };

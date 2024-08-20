@@ -29,7 +29,6 @@ export default function useModal() {
   const showModal = useCallback(
     (
       title,
-      // eslint-disable-next-line no-shadow
       getContent,
       closeOnClickOutside = false
     ) => {

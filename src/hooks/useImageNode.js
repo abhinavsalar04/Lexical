@@ -16,7 +16,7 @@ import {
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
 import { mergeRegister } from "@lexical/utils";
-import { $isImageNode } from ".";
+import { $isImageNode } from "../CustomNodes/ImageNode/index";
 
 export function useImageNode({ nodeKey, showCaption, caption, imageRef }) {
   const [editor] = useLexicalComposerContext();

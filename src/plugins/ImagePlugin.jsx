@@ -136,10 +136,11 @@ export function InsertImageUploadedDialogBody({ onClick }) {
 }
 
 export function InsertImageDialog({ activeEditor, onClose }) {
+   console.log("insert image dialog")
   const [mode, setMode] = useState(null);
-  const hasModifier = useRef(false);
+  const hasModifier = useRef(false);      
 
-  useEffect(() => {
+  useEffect(() => {                       
     hasModifier.current = false;
     const handler = (e) => {
       hasModifier.current = e.altKey;
@@ -178,6 +179,7 @@ export function InsertImageDialog({ activeEditor, onClose }) {
     </>
   );
 }
+
 
 export function ImagePlugin({ captionsEnabled }) {
   const [editor] = useLexicalComposerContext();

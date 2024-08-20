@@ -1,5 +1,5 @@
 import { Suspense, useRef } from "react";
-import { LazyImage, ImageResizer } from "./ImageUI"; // import UI components
+import { LazyImage, ImageResizer } from "./components"; // import UI components
 import { useImageNode } from "../../hooks/useImageNode"; // import the custom hook
 import { $isNodeSelection } from "lexical";
 

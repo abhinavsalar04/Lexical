@@ -15,23 +15,18 @@ import {$isLinkNode, TOGGLE_LINK_COMMAND} from '@lexical/link';
 import {INSERT_HORIZONTAL_RULE_COMMAND} from '@lexical/react/LexicalHorizontalRuleNode';
 import {$selectAll} from '@lexical/selection';
 import {$isHeadingNode} from '@lexical/rich-text';
-import {$isCodeNode, CODE_LANGUAGE_MAP} from '@lexical/code';
+import {$isCodeNode} from '@lexical/code';
 import getSelectedNode from "../utils/getSelectedNode";
 import useModal from "./useModal";
-import { InsertImageDialog } from "../plugins/ImagePlugin";
-
 
 const useEditorToolbar = () => {
 
     const [editor] = useLexicalComposerContext();
-
     const [hasFormat, setHasFormat] = useState(initialHasFormat);
     const [isEditorEmpty, setIsEditorEmpty] = useState(false);
     const [blockType, setBlockType] = useState('paragraph');
-    const [modal, showModal] = useModal()
-    const [selectedElementKey, setSelectedElementKey] = useState(null);
-    const [codeLanguage, setCodeLanguage] = useState("");
     const [isLink, setIsLink] = useState(false);
+    const [modal, showModal] = useModal()
 
 
     // This function runs every time the editor state changes.
@@ -76,7 +71,6 @@ const useEditorToolbar = () => {
             }
 
             if (elementDOM !== null) {
-                setSelectedElementKey(elementKey);
                 if ($isListNode(element)) {
                     const parentList = $getNearestNodeOfType(
                         anchorNode,
@@ -94,11 +88,11 @@ const useEditorToolbar = () => {
                         setBlockType(type);
                     }
                     if ($isCodeNode(element)) {
-                        const language =
-                            element.getLanguage();
-                        setCodeLanguage(
-                            language ? CODE_LANGUAGE_MAP[language] || language : '',
-                        );
+                        // const language =
+                        //     element.getLanguage();
+                        // setCodeLanguage(
+                        //     language ? CODE_LANGUAGE_MAP[language] || language : '',
+                        // );
                         return;
                     }
                 }
@@ -124,7 +118,7 @@ const useEditorToolbar = () => {
         } else {
             setIsEditorEmpty(false);
         }
-    }, [editor]);
+    }, []);
 
     const insertLink = useCallback(() => {
         if (!isLink) {
@@ -173,8 +167,8 @@ const useEditorToolbar = () => {
             }
         });
     }, [editor]);
-    
     return {
+        editor,
         modal, 
         showModal,
         hasFormat,

@@ -1,42 +1,91 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { Divider } from "@mui/material";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  minWidth: 300,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-};
+import './modalStyle.css';
+import React from 'react';
+import { useEffect, useRef} from 'react';
+import {createPortal} from 'react-dom';
 
-export default function ModalWrapper({ open, onClose, children, title }) {
+function PortalImpl({
+  onClose,
+  children,
+  title,
+  closeOnClickOutside,
+}) {
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    if (modalRef.current !== null) {
+      modalRef.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    let modalOverlayElement = null;
+    const handler = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    const clickOutsideHandler = (event) => {
+      const target = event.target;
+      if (
+        modalRef.current !== null &&
+        !modalRef.current.contains(target) &&
+        closeOnClickOutside
+      ) {
+        onClose();
+      }
+    };
+    const modelElement = modalRef.current;
+    if (modelElement !== null) {
+      modalOverlayElement = modelElement.parentElement;
+      if (modalOverlayElement !== null) {
+        modalOverlayElement.addEventListener('click', clickOutsideHandler);
+      }
+    }
+
+    window.addEventListener('keydown', handler);
+
+    return () => {
+      window.removeEventListener('keydown', handler);
+      if (modalOverlayElement !== null) {
+        modalOverlayElement?.removeEventListener('click', clickOutsideHandler);
+      }
+    };
+  }, [closeOnClickOutside, onClose]);
+  
   return (
-    <div>
-      <Modal
-        open={open}
-        onClose={onClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography
-            sx={{ px: 1 }}
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-          >
-            {title}
-          </Typography>
-          <Divider />
-          <Box sx={{ p: 2 }}>{children}</Box>
-        </Box>
-      </Modal>
+    <div className="LexicalModal__overlay" role="dialog">
+      <div className="LexicalModal__modal" tabIndex={-1} ref={modalRef}>
+        <h2 className="LexicalModal__title">{title}</h2>
+        <button
+          className="LexicalModal__closeButton"
+          aria-label="Close modal"
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();  
+            onClose()
+          }}>
+          X
+        </button>
+        <div className="LexicalModal__content">{children}</div>
+      </div>
     </div>
+  );
+}
+
+export default function Modal({
+  onClose,
+  children,
+  title,
+  closeOnClickOutside = false,
+}) {
+  return createPortal(
+    <PortalImpl
+      onClose={onClose}
+      title={title}
+      closeOnClickOutside={closeOnClickOutside}>
+      {children}
+    </PortalImpl>,
+    document.body,
   );
 }

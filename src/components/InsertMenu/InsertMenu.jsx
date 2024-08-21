@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Button from "@mui/material/Button";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Menu from "@mui/material/Menu";
@@ -6,17 +6,21 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import AddIcon from '@mui/icons-material/Add';
 import useInsertMenu from "../../hooks/useInsertMenu";
-import {getMenuButtonStyle} from "../../utils";
-import {useMediaQuery} from "@mui/material";
-import useEditorToolbar from '../../hooks/useEditorToolbar';
+import { getMenuButtonStyle } from "../../utils";
+import { ListItemText, useMediaQuery } from "@mui/material";
+import useModal from '../../hooks/useModal';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+
 const InsertMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const isMdViewport = useMediaQuery('(min-width:960px)');
     const handleClickIconButton = (event) => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null);
-    const {insertMenuItems} = useInsertMenu();
-    const {modal} = useEditorToolbar()
+    const [modal, showModal] = useModal()
+    const [editor] = useLexicalComposerContext()
+    const {insertMenuItems} = useInsertMenu({editor, showModal})
+
     return (
         <>
             <Button
@@ -26,9 +30,9 @@ const InsertMenu = () => {
                 size={isMdViewport ? "large" : "small"}
                 variant="text"
                 color="info"
-                sx={getMenuButtonStyle({open, isMdViewport})}
-                startIcon={<AddIcon/>}
-                endIcon={<KeyboardArrowDownIcon sx={{color: "grey.600"}}/>}
+                sx={getMenuButtonStyle({ open, isMdViewport })}
+                startIcon={<AddIcon />}
+                endIcon={<KeyboardArrowDownIcon sx={{ color: "grey.600" }} />}
             >
                 {isMdViewport ? "Insert" : null}
             </Button>
@@ -42,28 +46,25 @@ const InsertMenu = () => {
                     role: 'listbox',
                 }}
             >
-                {insertMenuItems.map((option, index) => (
+                {insertMenuItems?.map((menuItem, index) => {
+                    return (
                     <MenuItem
-                        role="option"
-                        key={index}
+                        key={menuItem?.title + "_" + index}
                         onClick={() => {
-                            handleClose();
-                            // if(option?._id === "IMAGE"){
-                            //     showModal("Insert Image", (onClose) => (
-                            //         <InsertImageDialog activeEditor={editor} onClose={onClose} />
-                            //     ))
-                            // }
-                            option.onClick();
-                        }}
+                        handleClose();
+                        menuItem?.onClick()
+                    }}
                     >
                         <ListItemIcon>
-                            {option.icon}
+                            {menuItem?.icon ?? <></>}
                         </ListItemIcon>
-                        {option.name}
-                    </MenuItem>
-                ))}
-                {modal}
+                        <ListItemText>
+                            {menuItem?.title ?? "_"}
+                        </ListItemText>
+                    </MenuItem>)
+                })}
             </Menu>
+            {modal}
         </>
     );
 };

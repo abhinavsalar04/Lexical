@@ -1,10 +1,4 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
+
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $wrapNodeInElement, mergeRegister } from "@lexical/utils";
 import {
@@ -24,8 +18,6 @@ import {
   DROP_COMMAND,
 } from "lexical";
 import { useEffect, useRef, useState } from "react";
-import * as React from "react";
-
 import { Box, Button, Grid, TextField } from "@mui/material";
 
 import { CAN_USE_DOM } from "../utils/canUseDom";
@@ -82,16 +74,43 @@ export function InsertImageUriDialogBody({ onClick }) {
 export function InsertImageUploadedDialogBody({ onClick }) {
   const [src, setSrc] = useState("");
   const [altText, setAltText] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
-  const isDisabled = src === "";
+  const isDisabled = src === "" || isLoading;
+
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      setIsLoading(true);
+      // const response = await new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     resolve({data: {url: "https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1-1024x824.jpg", alt: "image"}})
+      //   }, 1000)
+      // })
+      // console.log("response: ", response)
+      // if (response.data && response?.data?.url) {
+      //   setSrc(response?.data?.url); // Use the returned URL as the src
+      //   setAltText(response?.data?.alt)
+      // } else {
+      //   throw new Error("Upload failed");
+      // }
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      setSrc(""); // Reset src if upload fails
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const loadImage = (files) => {
     const reader = new FileReader();
     reader.onload = function () {
-      if (typeof reader.result === "string") {
+      if (typeof reader.result === 'string') {
         setSrc(reader.result);
       }
-      return "";
+      return '';
     };
     if (files !== null) {
       reader.readAsDataURL(files[0]);
@@ -100,7 +119,7 @@ export function InsertImageUploadedDialogBody({ onClick }) {
 
   return (
     <>
-      <Button fullWidth sx={{ mb: 1 }} variant="contained" component="label">
+      <Button disabled={isLoading} fullWidth sx={{ mb: 1 }} variant="contained" component="label">
         Upload
         <input
           onChange={(e) => loadImage(e.target.files)}
@@ -135,8 +154,7 @@ export function InsertImageUploadedDialogBody({ onClick }) {
   );
 }
 
-export function InsertImageDialog({ activeEditor, onClose }) {
-   console.log("insert image dialog")
+export function InsertImageDialog({ activeEditor,  onClose = () => {} }) {
   const [mode, setMode] = useState(null);
   const hasModifier = useRef(false);      
 
@@ -152,30 +170,31 @@ export function InsertImageDialog({ activeEditor, onClose }) {
   }, [activeEditor]);
 
   const onClick = (payload) => {
+    console.log("payload: ", payload)
     activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload);
     onClose();
   };
 
   return (
     <>
-      {!mode && (
-        <Box>
-          <Button
-            data-test-id="image-modal-option-url"
-            onClick={() => setMode("url")}
-          >
-            URL
-          </Button>
-          <Button
-            data-test-id="image-modal-option-file"
-            onClick={() => setMode("file")}
-          >
-            File
-          </Button>
-        </Box>
-      )}
-      {mode === "url" && <InsertImageUriDialogBody onClick={onClick} />}
-      {mode === "file" && <InsertImageUploadedDialogBody onClick={onClick} />}
+        {!mode && (
+          <Box>
+            <Button
+              data-test-id="image-modal-option-url"
+              onClick={() => setMode("url")}
+            >
+              URL
+            </Button>
+            <Button
+              data-test-id="image-modal-option-file"
+              onClick={() => setMode("file")}
+            >
+              File
+            </Button>
+          </Box>
+        )}
+        {mode === "url" && <InsertImageUriDialogBody onClick={onClick} />}
+        {mode === "file" && <InsertImageUploadedDialogBody onClick={onClick} />}
     </>
   );
 }

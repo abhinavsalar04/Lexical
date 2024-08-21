@@ -21,7 +21,10 @@ import {ImagePlugin} from "../plugins/ImagePlugin"
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import PageBreakPlugin from '../plugins/PageBreakPlugin';
 import CollapsiblePlugin from '../plugins/CollapsiblePlugin';
-
+import {DEFAULT_EDITOR_SETTINGS} from "../constants"
+import TableHoverActionsPlugin from '../components/TableHoverActionsPlugin';
+import TableActionMenuPlugin from "../components/Table/index"
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 export const RichTextEditor = ({content, setContent}) => {
     return (
         <LexicalComposer
@@ -30,7 +33,9 @@ export const RichTextEditor = ({content, setContent}) => {
             <Stack sx={editorStyles.container}>
                 <Toolbar editable/>
                 <RichTextPlugin
-                    contentEditable={<ContentEditable sx={editorStyles.contentEditable}/>}
+                    contentEditable={
+                        <ContentEditable sx={editorStyles.contentEditable}/>
+                    }
                     placeholder={<Placeholder sx={editorStyles.placeholder}>Enter some rich text...</Placeholder>}
                     ErrorBoundary={LexicalErrorBoundary}
                 />
@@ -38,14 +43,21 @@ export const RichTextEditor = ({content, setContent}) => {
                 <LexicalToHtmlPlugin 
                     onHtmlChanged={(html) => {setContent(html)}}    
                 />
+                <AutoFocusPlugin />
                 <AutoLinkPlugin matchers={MATCHERS} />
                 <HtmlToLexicalPlugin content={content} />
                 <HistoryPlugin/>
                 <ListPlugin/>
                 <LinkPlugin />
                 <TablePlugin/>
+                <TableActionMenuPlugin  /> 
+                <TableHoverActionsPlugin />
                 <PageBreakPlugin />
                 <CollapsiblePlugin />
+                <TablePlugin
+                    hasCellMerge={DEFAULT_EDITOR_SETTINGS?.tableCellMerge ?? false}
+                    hasCellBackgroundColor={DEFAULT_EDITOR_SETTINGS?.tableCellBackgroundColor ?? false}
+                />
                 <ImagePlugin captionsEnabled={false} />
                 <HorizontalRulePlugin />
                 <CheckListPlugin/>

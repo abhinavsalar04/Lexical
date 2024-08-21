@@ -10,9 +10,7 @@ import './ColorPicker.css';
 
 import {calculateZoomLevel} from '@lexical/utils';
 import {useEffect, useMemo, useRef, useState} from 'react';
-import * as React from 'react';
-
-import TextInput from './TextInput';
+import TextInput from '../TextInput/TextInput';
 
 let skipAddingToHistoryStack = false;
 
@@ -155,7 +153,7 @@ export default function ColorPicker({
 
 
 function MoveWrapper({className, style, onChange, children}) {
-  const divRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef(null);
   const draggedRef = useRef(false);
 
   const move = (e) => {

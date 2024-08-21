@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-
-import Modal from "../components/Modal";
+import React from "react"
+import Modal from "../components/Modal/index"
 
 export default function useModal() {
   const [modalContent, setModalContent] = useState(null);
@@ -29,6 +29,7 @@ export default function useModal() {
   const showModal = useCallback(
     (
       title,
+      // eslint-disable-next-line no-shadow
       getContent,
       closeOnClickOutside = false
     ) => {

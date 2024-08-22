@@ -1,6 +1,4 @@
 import {FORMAT_TEXT_COMMAND, UNDO_COMMAND, REDO_COMMAND,} from 'lexical';
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-// import Divider from '@mui/material/Divider';
 import {Divider} from '../../ui/Divider/divider';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
@@ -8,11 +6,9 @@ import StrikethroughSIcon from '@mui/icons-material/StrikethroughS';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import LinkIcon from '@mui/icons-material/Link';
 import CodeIcon from '@mui/icons-material/Code';
-import UndoIcon from '@mui/icons-material/Undo';
-import RedoIcon from '@mui/icons-material/Redo';
 import ClearIcon from '@mui/icons-material/Clear';
-import ColorLensIcon from '@mui/icons-material/ColorLens';
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
+import FormatColorTextRoundedIcon from '@mui/icons-material/FormatColorTextRounded';
+import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import IconButton from '@mui/material/IconButton';
@@ -31,10 +27,12 @@ import {getActiveBtnStyle} from "../../utils";
 import FloatingLinkEditor from '../FloatingLinkEditor';
 import { createPortal } from 'react-dom';
 import InsertMenu from '../InsertMenu/InsertMenu';
+import FontSizePlugin from "../../plugins/FontSizePlugin/fontSize"
 
 
 const Toolbar = ({editable}) => {
     const {
+        fontSize,
         editor, 
         hasFormat,
         isEditorEmpty,
@@ -43,7 +41,7 @@ const Toolbar = ({editable}) => {
         insertLink,
         clearFormatting,
     } = useEditorToolbar();
-
+    
     const {clearEditorContent} = useCustomCommands();
     const handleClearEditorContent = () => {
         if (confirm("Are you sure you want to clear out the editor's content?"))
@@ -54,23 +52,31 @@ const Toolbar = ({editable}) => {
 
     return (
         <Stack direction="row" gap={1} sx={toolbarStyles.root}>
-            <Tooltip title="Undo (Ctrl + Z)">
-                <IconButton
-                    size="small"
-                    onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}>
-                    <ReplayRoundedIcon/>
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Redo (Ctrl + Y)">
-                <IconButton
-                    size="small"
-                    onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}>
-                    <ReplayRoundedIcon style={{transform: "scale(-1, 1)"}}/>
-                </IconButton>
-            </Tooltip>
+            <div>
+                <Tooltip title="Undo (Ctrl + Z)">
+                    <IconButton
+                        size="small"
+                        onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}>
+                        <ReplayRoundedIcon/>
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Redo (Ctrl + Y)">
+                    <IconButton
+                        size="small"
+                        onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}>
+                        <ReplayRoundedIcon style={{transform: "scale(-1, 1)"}}/>
+                    </IconButton>
+                </Tooltip>
+            </div>
             <Divider  orientation="vertical" flexItem/>
             <BlockFormatMenu blockType={blockType}/>
             <Divider orientation="vertical" flexItem/>
+            <FontSizePlugin 
+                selectionFontSize={fontSize?.slice(0, -2)}
+                editor={editor}
+                disabled={false}
+            />
+            <Divider />
             <Tooltip title="Bold (Ctrl + B)">
                 <IconButton
                     size="small"
@@ -132,13 +138,13 @@ const Toolbar = ({editable}) => {
                 key="color-picker"
                 title="Font color"
                 onChange={(color) => onFontColorSelect(color)}
-                icon={<ColorLensIcon/>}
+                icon={<FormatColorTextRoundedIcon/>}
             />
             <ColorPicker
                 key="bg-color-picker"
                 title="Background color"
                 onChange={(color) => onBgColorSelect(color)}
-                icon={<FormatColorFillIcon/>}
+                icon={<BorderColorRoundedIcon/>}
             />
             <Divider className='divider' orientation="vertical" flexItem/>
             <FormatTextMenu hasFormat={hasFormat}/>

@@ -30,6 +30,7 @@ const BlockFormatMenu = ({blockType}) => {
                 aria-controls={anchorEl ? "block-format-menu" : undefined}
                 onClick={handleClickIconButton}
                 size="large"
+                color='inherit'
                 variant="text"
                 sx={{
                     ...getMenuButtonStyle({open, isMdViewport}),

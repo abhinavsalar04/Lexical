@@ -1,7 +1,7 @@
 import {FORMAT_TEXT_COMMAND, UNDO_COMMAND, REDO_COMMAND,} from 'lexical';
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 // import Divider from '@mui/material/Divider';
-import {Divider} from '../UI/Divider/divider';
+import {Divider} from '../../ui/Divider/divider';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import StrikethroughSIcon from '@mui/icons-material/StrikethroughS';

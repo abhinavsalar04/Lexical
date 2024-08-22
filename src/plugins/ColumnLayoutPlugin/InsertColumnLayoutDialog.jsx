@@ -1,10 +1,8 @@
 
-import {LexicalEditor} from 'lexical';
 import {useState} from 'react';
-
-import Button from '../../ui/Button';
-import {INSERT_LAYOUT_COMMAND} from './LayoutPlugin';
-
+import {INSERT_LAYOUT_COMMAND} from "./ColumnLayoutPlugin";
+import {DropDownMenu} from "../../ui/Dropdown/dropdown"
+import { Button } from '@mui/material';
 const LAYOUTS = [
   {label: '2 columns (equal width)', value: '1fr 1fr'},
   {label: '2 columns (25% - 75%)', value: '1fr 3fr'},
@@ -27,19 +25,17 @@ export default function InsertLayoutDialog({
 
   return (
     <>
-      <DropDown
+      <DropDownMenu
         buttonClassName="toolbar-item dialog-dropdown"
-        buttonLabel={buttonLabel}>
-        {LAYOUTS.map(({label, value}) => (
-          <DropDownItem
-            key={value}
-            className="item"
-            onClick={() => setLayout(value)}>
-            <span className="text">{label}</span>
-          </DropDownItem>
-        ))}
-      </DropDown>
-      <Button onClick={onClick}>Insert</Button>
+        buttonLabel={buttonLabel}
+        menuItems={LAYOUTS}
+        onSelect={(layout) => {setLayout(layout)}}
+      >
+      </DropDownMenu>
+      <Button data-test-id="insert-table-modal" variant="contained"
+        color='inherit'
+        style={{boxShadow: 'none', marginTop: "15px"}}
+        focusRipple={true}   onClick={onClick}>Insert</Button>
     </>
   );
 }

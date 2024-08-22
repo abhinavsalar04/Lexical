@@ -4,10 +4,12 @@ import TableViewOutlinedIcon from '@mui/icons-material/TableViewOutlined';
 import { InsertImageDialog } from '../plugins/ImagePlugin';
 import InsertPageBreakOutlinedIcon from '@mui/icons-material/InsertPageBreakOutlined';
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
+import ViewWeekOutlinedIcon from '@mui/icons-material/ViewWeekOutlined';
 import {INSERT_HORIZONTAL_RULE_COMMAND} from "@lexical/react/LexicalHorizontalRuleNode";
 import { INSERT_PAGE_BREAK } from '../plugins/PageBreakPlugin';
 import {INSERT_COLLAPSIBLE_COMMAND} from "../plugins/CollapsiblePlugin/index"
 import {InsertTableDialog} from "../plugins/TablePlugin"
+import InsertLayoutDialog from "../plugins/ColumnLayoutPlugin/InsertColumnLayoutDialog"
 const useInsertMenu = ({editor, showModal}) => {
     const insertMenuItems = [
         {
@@ -46,6 +48,16 @@ const useInsertMenu = ({editor, showModal}) => {
                 );
             }
         },
+        {
+            title: "Column Layout",
+            icon: <ViewWeekOutlinedIcon />,
+            onClick: () => showModal('Insert Columns', (onClose) => {
+                return  <InsertLayoutDialog
+                activeEditor={editor}
+                onClose={onClose}
+              /> 
+            }, true)
+        }
 
     ]
 

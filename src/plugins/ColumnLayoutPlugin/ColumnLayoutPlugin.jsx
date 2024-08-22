@@ -24,12 +24,12 @@ import {
   $createLayoutContainerNode,
   $isLayoutContainerNode,
   LayoutContainerNode,
-} from '../../nodes/LayoutContainerNode';
+} from '../../CustomNodes/ColumnLayout/LayoutContainerNode';
 import {
   $createLayoutItemNode,
   $isLayoutItemNode,
   LayoutItemNode,
-} from '../../nodes/LayoutItemNode';
+} from '../../CustomNodes/ColumnLayout/LayoutItemNode';
 
 export const INSERT_LAYOUT_COMMAND = createCommand();
 

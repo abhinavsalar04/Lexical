@@ -22,9 +22,9 @@ import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import PageBreakPlugin from '../plugins/PageBreakPlugin';
 import CollapsiblePlugin from '../plugins/CollapsiblePlugin';
 import {DEFAULT_EDITOR_SETTINGS} from "../constants"
-import TableHoverActionsPlugin from '../components/TableHoverActionsPlugin';
 import TableActionMenuPlugin from "../components/Table/index"
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
+import { LayoutPlugin } from '../plugins/ColumnLayoutPlugin/ColumnLayoutPlugin';
 export const RichTextEditor = ({content, setContent}) => {
     return (
         <LexicalComposer
@@ -51,9 +51,9 @@ export const RichTextEditor = ({content, setContent}) => {
                 <LinkPlugin />
                 <TablePlugin/>
                 <TableActionMenuPlugin  /> 
-                <TableHoverActionsPlugin />
                 <PageBreakPlugin />
                 <CollapsiblePlugin />
+                <LayoutPlugin />
                 <TablePlugin
                     hasCellMerge={DEFAULT_EDITOR_SETTINGS?.tableCellMerge ?? false}
                     hasCellBackgroundColor={DEFAULT_EDITOR_SETTINGS?.tableCellBackgroundColor ?? false}

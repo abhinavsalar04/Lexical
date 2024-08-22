@@ -22,6 +22,8 @@ import { PageBreakNode } from "./CustomNodes/PageBreakNode/PageBreakNode";
 import { CollapsibleTitleNode } from "./CustomNodes/CollapsibleContainer/CollapsibleTitleNode";
 import { CollapsibleContainerNode } from "./CustomNodes/CollapsibleContainer/CollapsibleContainerNode";
 import { CollapsibleContentNode } from "./CustomNodes/CollapsibleContainer/CollapsibleContentNode";
+import { LayoutContainerNode } from "./CustomNodes/ColumnLayout/LayoutContainerNode";
+import { LayoutItemNode } from "./CustomNodes/ColumnLayout/LayoutItemNode";
 
 export const theme = {
     blockCursor: 'blockCursor',
@@ -158,6 +160,8 @@ export const EDITOR_NODES = [
     CollapsibleTitleNode,
     CollapsibleContainerNode,
     CollapsibleContentNode,
+    LayoutContainerNode,
+    LayoutItemNode,
     HorizontalRuleNode,
 ];
 

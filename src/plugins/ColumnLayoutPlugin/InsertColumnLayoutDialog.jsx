@@ -32,10 +32,11 @@ export default function InsertLayoutDialog({
         onSelect={(layout) => {setLayout(layout)}}
       >
       </DropDownMenu>
-      <Button data-test-id="insert-table-modal" variant="contained"
+      <Button 
+        variant="contained"
         color='inherit'
         style={{boxShadow: 'none', marginTop: "15px"}}
-        focusRipple={true}   onClick={onClick}>Insert</Button>
+        onClick={onClick}>Insert</Button>
     </>
   );
 }

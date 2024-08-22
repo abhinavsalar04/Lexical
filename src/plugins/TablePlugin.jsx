@@ -11,12 +11,10 @@ import {
   createCommand,
 } from 'lexical';
 import {createContext, useContext, useEffect, useMemo, useState} from 'react';
-
-import Button from '../components/Button/Button';
 import {DialogActions} from '../components/Dialog/Dialog';
 import TextInput from "../components/TextInput/TextInput";
 import invariant from '../utils/invariants';
-import Modal from '../components/Modal';
+import { Button } from '@mui/material';
 
 
 export const INSERT_NEW_TABLE_COMMAND = createCommand('INSERT_NEW_TABLE_COMMAND');
@@ -95,7 +93,13 @@ export function InsertTableDialog({
           type="number"
         />
         <DialogActions data-test-id="table-model-confirm-insert">
-          <Button disabled={isDisabled} onClick={onClick}>
+          <Button 
+            variant="contained"
+            color="inherit"
+            disabled={isDisabled}
+            style={{ boxShadow: 'none'}}
+            onClick={onClick}
+          >
             Confirm
           </Button>
         </DialogActions>

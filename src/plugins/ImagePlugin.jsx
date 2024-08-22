@@ -18,7 +18,7 @@ import {
   DROP_COMMAND,
 } from "lexical";
 import { useEffect, useRef, useState } from "react";
-import { Box, Button, Grid, TextField } from "@mui/material";
+import { Box, Button, DialogActions, Grid, TextField } from "@mui/material";
 
 import { CAN_USE_DOM } from "../utils/canUseDom";
 import {
@@ -26,6 +26,8 @@ import {
   $isImageNode,
   ImageNode,
 } from "../CustomNodes/ImageNode";
+import TextInput from "../components/TextInput/TextInput";
+import FileInput from "../ui/FileInput/fileInput";
 
 const getDOMSelection = (targetWindow) =>
   CAN_USE_DOM ? (targetWindow || window).getSelection() : null;
@@ -119,37 +121,30 @@ export function InsertImageUploadedDialogBody({ onClick }) {
 
   return (
     <>
-      <Button disabled={isLoading} fullWidth sx={{ mb: 1 }} variant="contained" component="label">
-        Upload
-        <input
-          onChange={(e) => loadImage(e.target.files)}
-          hidden
-          accept="image/*"
-          multiple
-          type="file"
-        />
-      </Button>
-
-      <TextField
+      <FileInput
+        label="Image Upload"
+        onChange={loadImage}
+        accept="image/*"
+        data-test-id="image-modal-file-upload"
+      />
+      <TextInput
         label="Alt Text"
         placeholder="Descriptive alternative text"
-        onChange={(e) => setAltText(e.target.value)}
+        onChange={setAltText}
         value={altText}
-        sx={{ mb: 7, height: 10 }}
-        fullWidth
-        variant="standard"
         data-test-id="image-modal-alt-text-input"
       />
-      <Grid container justifyContent="flex-end">
+      <DialogActions>
         <Button
-          data-test-id="image-modal-confirm-btn"
+          data-test-id="image-modal-file-upload-btn"
+          variant="contained"
+          color="inherit"
+          style={{boxShadow: "none"}}
           disabled={isDisabled}
-          onClick={() => onClick({ altText, src })}
-          variant="outlined"
-        >
+          onClick={() => onClick({altText, src})}>
           Confirm
         </Button>
-      </Grid>
+      </DialogActions>
     </>
   );
 }
@@ -178,14 +173,24 @@ export function InsertImageDialog({ activeEditor,  onClose = () => {} }) {
   return (
     <>
         {!mode && (
-          <Box>
+          <Box
+           display={"flex"}
+           flexDirection={"column"}
+           gap={"1.5rem"}
+          >
             <Button
+              variant="contained"
+              color="inherit"
+              style={{boxShadow: "none"}}
               data-test-id="image-modal-option-url"
               onClick={() => setMode("url")}
             >
               URL
             </Button>
             <Button
+              variant="contained"
+              color="inherit"
+              style={{boxShadow: "none"}}
               data-test-id="image-modal-option-file"
               onClick={() => setMode("file")}
             >

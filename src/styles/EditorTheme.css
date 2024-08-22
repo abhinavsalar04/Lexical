@@ -1,18 +1,18 @@
-.ltr {
+.LexicalEditor_ltr {
     text-align: left;
 }
 
-.rtl {
+.LexicalEditor_rtl {
     text-align: right;
 }
 
-.paragraph {
+.LexicalEditor_paragraph {
     position: relative;
     display: block;
     margin: 1em 0;
 }
 
-.quote {
+.LexicalEditor_quote {
     margin: 0;
     margin-left: 20px;
     margin-bottom: 10px;
@@ -24,103 +24,103 @@
     padding-left: 16px;
 }
 
-.h1 {
+.LexicalEditor_h1 {
     display: block;
     font-size: 2em;
     margin: 0.67em 0;
     font-weight: bold;
 }
 
-.h2 {
+.LexicalEditor_h2 {
     display: block;
     font-size: 1.5em;
     margin: 0.83em 0;
     font-weight: bold;
 }
 
-.h3 {
+.LexicalEditor_h3 {
     display: block;
     font-size: 1.17em;
     margin: 1em 0;
     font-weight: bold;
 }
 
-.h4 {
+.LexicalEditor_h4 {
     display: block;
     margin: 1.33em 0;
     font-weight: bold;
 }
 
-.h5 {
+.LexicalEditor_h5 {
     display: block;
     font-size: .83em;
     margin: 1.67em 0;
 }
 
-.h6 {
+.LexicalEditor_h6 {
     display: block;
     font-size: .67em;
     margin: 2.33em 0;
     font-weight: bold;
 }
 
-.indent {
+.LexicalEditor_indent {
     --lexical-indent-base-value: 20px;
 }
 
-.textBold {
+.LexicalEditor_textBold {
     font-weight: bold;
 }
 
-.textItalic {
+.LexicalEditor_textItalic {
     font-style: italic;
 }
 
-.textUnderline {
+.LexicalEditor_textUnderline {
     text-decoration: underline;
 }
 
-.textStrikethrough {
+.LexicalEditor_textStrikethrough {
     text-decoration: line-through;
 }
 
-.textUnderlineStrikethrough {
+.LexicalEditor_textUnderlineStrikethrough {
     text-decoration: underline line-through;
 }
 
-.textSubscript {
+.LexicalEditor_textSubscript {
     font-size: 0.8em;
     vertical-align: sub !important;
 }
 
-.textSuperscript {
+.LexicalEditor_textSuperscript {
     font-size: 0.8em;
     vertical-align: super;
 }
 
-.textCode {
+.LexicalEditor_textCode {
     background-color: rgb(240, 242, 245);
     padding: 1px 0.25rem;
     font-family: Menlo, Consolas, Monaco, monospace;
     font-size: 94%;
 }
 
-.hashtag {
+.LexicalEditor_hashtag {
     background-color: rgba(88, 144, 255, 0.15);
     border-bottom: 1px solid rgba(88, 144, 255, 0.3);
 }
 
-.link {
+.LexicalEditor_link {
     color: rgb(33, 111, 219);
     text-decoration: none;
 }
 
-.link:hover {
+.LexicalEditor_link:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
-.code {
+.LexicalEditor_code {
     background-color: rgb(240, 242, 245);
     font-family: Menlo, Consolas, Monaco, monospace;
     display: block;
@@ -136,7 +136,7 @@
     position: relative;
 }
 
-.code::before {
+.LexicalEditor_code::before {
     content: attr(data-gutter);
     position: absolute;
     background-color: #eee;
@@ -150,57 +150,58 @@
     min-width: 25px;
 }
 
-.characterLimit {
+.LexicalEditor_characterLimit {
     display: inline;
     background-color: #ffbbbb !important;
 }
 
-.ol1 {
+.LexicalEditor_ol1 {
     padding: 0;
     margin: 0;
     list-style-position: inside;
 }
 
-.ol2 {
+.LexicalEditor_ol2 {
     padding: 0;
     margin: 0;
     list-style-type: upper-alpha;
     list-style-position: inside;
 }
 
-.ol3 {
+.LexicalEditor_ol3 {
     padding: 0;
     margin: 0;
     list-style-type: lower-alpha;
     list-style-position: inside;
 }
 
-.ol4 {
+.LexicalEditor_ol4 {
     padding: 0;
     margin: 0;
     list-style-type: upper-roman;
     list-style-position: inside;
 }
 
-.ol5 {
+.LexicalEditor_ol5 {
     padding: 0;
     margin: 0;
     list-style-type: lower-roman;
     list-style-position: inside;
 }
 
-.ul {
+.LexicalEditor_ul {
     padding: 0;
     margin: 0;
     list-style-position: inside;
 }
 
-.listItem {
+.LexicalEditor_listItem {
     margin: 0 32px;
+    line-height: 1.7;
 }
 
-.listItemChecked,
-.listItemUnchecked {
+.LexicalEditor_listItemChecked,
+.LexicalEditor_listItemUnchecked {
     position: relative;
     margin-left: 8px;
     margin-right: 8px;
@@ -210,16 +211,17 @@
     outline: none;
 }
 
-.listItemChecked {
+.LexicalEditor_listItemChecked {
     text-decoration: line-through;
 }
 
-.listItemUnchecked::before,
-.listItemChecked::before {
+
+.LexicalEditor_listItemUnchecked::before,
+.LexicalEditor_listItemChecked::before {
     content: '';
     width: 16px;
     height: 16px;
-    top: 2px;
+    top: 5px;
     left: 0;
     cursor: pointer;
     display: block;
@@ -227,31 +229,31 @@
     position: absolute;
 }
 
-.listItemUnchecked[dir='rtl']::before,
-.listItemChecked[dir='rtl']::before {
+.LexicalEditor_listItemUnchecked[dir='rtl']::before,
+.LexicalEditor_listItemChecked[dir='rtl']::before {
     left: auto;
     right: 0;
 }
 
-.listItemUnchecked:focus::before,
-.listItemChecked:focus::before {
+.LexicalEditor_listItemUnchecked:focus::before,
+.LexicalEditor_listItemChecked:focus::before {
     box-shadow: 0 0 0 2px #a6cdfe;
     border-radius: 2px;
 }
 
-.listItemUnchecked::before {
+.LexicalEditor_listItemUnchecked::before {
     border: 1px solid #999;
     border-radius: 2px;
 }
 
-.listItemChecked::before {
+.LexicalEditor_listItemChecked::before {
     border: 1px solid rgb(61, 135, 245);
     border-radius: 2px;
     background-color: #3d87f5;
     background-repeat: no-repeat;
 }
 
-.listItemChecked::after {
+.LexicalEditor_listItemChecked::after {
     content: '';
     cursor: pointer;
     border-color: #fff;
@@ -267,12 +269,12 @@
     border-width: 0 2px 2px 0;
 }
 
-.nestedListItem {
+.LexicalEditor_nested_listItem {
     list-style-type: none;
 }
 
-.nestedListItem::before,
-.nestedListItem::after {
+.LexicalEditor_nestedListItem::before,
+.LexicalEditor_nestedListItem::after {
     display: none;
 }
 
@@ -617,9 +619,17 @@
     background-color: #ddd;
   }
 
-  .toolbar i.dropdown-chevron-up{
-
+  .LexicalEditor__layoutContainer {
+    display: grid;
+    gap: 10px;
+    margin: 10px 0;
   }
+  
+  .LexicalEditor__layoutItem {
+    border: 1px dashed #ddd;
+    padding: 8px 16px;
+  }
+
   .toolbar i.chevron-down,
   .toolbar-item i.chevron-down {
     margin-top: 3px;

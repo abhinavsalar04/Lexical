@@ -13,9 +13,10 @@ import {$isListNode, ListNode} from "@lexical/list";
 import {$isDecoratorBlockNode} from '@lexical/react/LexicalDecoratorBlockNode';
 import {$isLinkNode, TOGGLE_LINK_COMMAND} from '@lexical/link';
 import {INSERT_HORIZONTAL_RULE_COMMAND} from '@lexical/react/LexicalHorizontalRuleNode';
-import {$selectAll} from '@lexical/selection';
+import {$getSelectionStyleValueForProperty, $selectAll} from '@lexical/selection';
 import {$isHeadingNode} from '@lexical/rich-text';
 import {$isCodeNode} from '@lexical/code';
+import {$isTableSelection} from '@lexical/table';
 import getSelectedNode from "../utils/getSelectedNode";
 import useModal from "./useModal";
 
@@ -26,12 +27,21 @@ const useEditorToolbar = () => {
     const [isEditorEmpty, setIsEditorEmpty] = useState(false);
     const [blockType, setBlockType] = useState('paragraph');
     const [isLink, setIsLink] = useState(false);
+    const [fontSize, setFontSize] = useState('15px');
     const [modal, showModal] = useModal()
 
 
     // This function runs every time the editor state changes.
     const updateToolbar = useCallback(() => {
         const selection = $getSelection();
+
+        // setting fontsize
+        if ($isRangeSelection(selection) || $isTableSelection(selection)) {
+            setFontSize(
+              $getSelectionStyleValueForProperty(selection, 'font-size', '15px'),
+            );
+          }
+
         if ($isRangeSelection(selection)) {
             const anchorNode = selection.anchor.getNode();
             let element =
@@ -168,6 +178,7 @@ const useEditorToolbar = () => {
         });
     }, [editor]);
     return {
+        fontSize,
         editor,
         modal, 
         showModal,

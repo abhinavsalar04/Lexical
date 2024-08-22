@@ -1,5 +1,6 @@
 import { Suspense, useRef } from "react";
-import { LazyImage, ImageResizer } from "./components"; // import UI components
+import { LazyImage} from "./components";
+import ImageResizer from "../../components/ImageResizer/ImageResizer"
 import { useImageNode } from "../../hooks/useImageNode"; // import the custom hook
 import { $isNodeSelection } from "lexical";
 
@@ -46,7 +47,29 @@ export default function ImageComponent({
             maxWidth={maxWidth}
           />
         </div>
-
+        {/* {showCaption && (
+          <div className="image-caption-container">
+          <LexicalNestedComposer
+              initialEditor={caption}
+              initialNodes={[
+                RootNode,
+                TextNode,
+                ParagraphNode,
+              ]}>
+              <AutoFocusPlugin />
+               <PlainTextPlugin
+                contentEditable={
+                  <ContentEditable
+                    placeholder="Enter a caption..."
+                    placeholderClassName="ImageNode__placeholder"
+                    className="ImageNode__contentEditable"
+                  />
+                }
+                ErrorBoundary={LexicalErrorBoundary}
+              />
+            </LexicalNestedComposer>
+          </div>
+        )} */}
         {resizable && $isNodeSelection(selection) && isFocused && (
           <ImageResizer
             showCaption={showCaption}

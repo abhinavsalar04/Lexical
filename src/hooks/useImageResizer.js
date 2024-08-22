@@ -7,9 +7,8 @@ const Direction = {
   west: 1 << 2,
 };
 
-export function useImageResizer({ editor, onResizeStart, onResizeEnd }) {
+export function useImageResizer({ imageRef, editor, onResizeStart, onResizeEnd }) {
   const controlWrapperRef = useRef(null);
-  const imageRef = useRef(null);
   const positioningRef = useRef({
     currentHeight: 0,
     currentWidth: 0,

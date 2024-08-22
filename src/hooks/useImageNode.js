@@ -195,7 +195,6 @@ export function useImageNode({ nodeKey, showCaption, caption, imageRef }) {
 
     const draggable = isSelected && $isNodeSelection(selection) && !isResizing;
     const isFocused = isSelected || isResizing;
-
   return {
     editor,
     isSelected,

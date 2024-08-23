@@ -10,7 +10,7 @@ export const useFontSizeStyles = () => ({
     fontWeight: 'bold',
     fontSize: '14px',
     color: '#777',
-    borderRadius: '5px',
+    borderRadius: '6px',
     border: `2px solid ${grey[600]}`,
     borderColor: grey[500],
     height: '28px',
@@ -24,7 +24,7 @@ export const useFontSizeStyles = () => ({
     color: grey[600],
     cursor: "pointer",
     '&:hover': {
-      borderRadius: "8px",
+      borderRadius: "6px",
       backgroundColor: grey[100],
     },
   },
@@ -34,7 +34,7 @@ export const useFontSizeStyles = () => ({
     color: grey[600],
     cursor: "pointer",
     '&:hover': {
-      borderRadius: "8px",
+      borderRadius: "6px",
       backgroundColor: grey[100],
     },
   },

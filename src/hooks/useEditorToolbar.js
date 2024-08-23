@@ -20,6 +20,7 @@ import {$isTableSelection} from '@lexical/table';
 import getSelectedNode from "../utils/getSelectedNode";
 import useModal from "./useModal";
 import useCustomCommands from "./useCustomCommands";
+import useColorPicker from "./useColorPicker";
 
 const LowPriority = 1;
 const useEditorToolbar = () => {
@@ -35,6 +36,9 @@ const useEditorToolbar = () => {
     const [canRedo, setCanRedo] = useState(false)
     const {clearEditorContent} = useCustomCommands();
     const [isClearEditorDialogOpen, setIsClearEditorDialogOpen] = useState(false)
+    const defaultFontColor = "#000"
+    const defaultBackgroundColor = "#fff"
+    const {fontColorChangeHandler ,backgroundColorChangeHandler} = useColorPicker()
 
     // This function runs every time the editor state changes.
     const updateToolbar = useCallback(() => {
@@ -198,10 +202,15 @@ const useEditorToolbar = () => {
             }
         });
     }, [editor]);
+    
     return {
         isClearEditorDialogOpen,
         setIsClearEditorDialogOpen,
         clearEditorContent,
+        defaultFontColor,
+        fontColorChangeHandler,
+        defaultBackgroundColor,
+        backgroundColorChangeHandler,
         canUndo,
         canRedo,
         fontSize,

@@ -19,7 +19,6 @@ import BlockFormatMenu from "../BlockFormatMenu/BlockFormatMenu";
 import AlignMenu from "../AlignMenu/AlignMenu";
 import FormatTextMenu from "../FormatTextMenu/FormatTextMenu";
 import useEditorToolbar from "../../hooks/useEditorToolbar";
-import useColorPicker from "../../hooks/useColorPicker";
 import toolbarStyles from "./styles";
 import {getActiveBtnStyle} from "../../utils";
 import FloatingLinkEditor from '../FloatingLinkEditor';
@@ -28,6 +27,7 @@ import InsertMenu from '../InsertMenu/InsertMenu';
 import FontSizePlugin from "../../plugins/FontSizePlugin/fontSize"
 import { Divider } from '@mui/material';
 import AlertDialog from "../../ui/AlertDialog/alertDialog"
+import { DropdownMenu } from '../../ui/DropdownMenu/dropdownMenu';
 
 
 const Toolbar = ({editable}) => {
@@ -35,10 +35,14 @@ const Toolbar = ({editable}) => {
         isClearEditorDialogOpen,
         setIsClearEditorDialogOpen,
         clearEditorContent,
+        defaultFontColor,
+        fontColorChangeHandler,
+        defaultBackgroundColor,
+        backgroundColorChangeHandler,
         canUndo,
         canRedo,
         fontSize,
-        editor, 
+        editor,
         hasFormat,
         isEditorEmpty,
         blockType,
@@ -47,7 +51,6 @@ const Toolbar = ({editable}) => {
         clearFormatting,
     } = useEditorToolbar();
     
-    const {onFontColorSelect, onBgColorSelect } = useColorPicker();
     if (!editable) return null;
 
     return (
@@ -58,7 +61,7 @@ const Toolbar = ({editable}) => {
                         <IconButton
                             sx={{
                                 ...(canUndo
-                                    ? toolbarStyles.activeButtonStyle
+                                    ? {...toolbarStyles.commonButtonStyle, ...toolbarStyles.buttonHover, padding: "-2px 0px"}
                                     : { ...toolbarStyles.pointerEventsNone, ...toolbarStyles.disabledButtonStyle }),
                             }}
                             size="small"
@@ -71,7 +74,7 @@ const Toolbar = ({editable}) => {
                         <IconButton
                             sx={{
                                 ...(canRedo
-                                    ? toolbarStyles.activeButtonStyle
+                                    ? {...toolbarStyles.commonButtonStyle, ...toolbarStyles.buttonHover, padding: "-2px 0px"}
                                     : { ...toolbarStyles.pointerEventsNone, ...toolbarStyles.disabledButtonStyle }),
                             }}
                             size="small"
@@ -147,18 +150,19 @@ const Toolbar = ({editable}) => {
                 {isLink &&
                     createPortal(<FloatingLinkEditor editor={editor} />, document.body)
                 }
-                <ColorPicker
-                    key="color-picker"
-                    title="Font color"
-                    onChange={(color) => onFontColorSelect(color)}
-                    icon={<FormatColorTextRoundedIcon fontSize='small'/>}
-                />
-                <ColorPicker
-                    key="bg-color-picker"
-                    title="Background color"
-                    onChange={(color) => onBgColorSelect(color)}
-                    icon={<BorderColorRoundedIcon fontSize='small'/>}
-                />
+                <DropdownMenu  buttonStyle={{...toolbarStyles.commonButtonStyle, ...toolbarStyles.buttonHover, minWidth: 'auto', verticalAlign: 'middle'}} startIcon={<FormatColorTextRoundedIcon fontSize='small'/>} >
+                    <ColorPicker
+                        color={defaultFontColor}
+                        onChange={fontColorChangeHandler}
+                        
+                    />
+                </DropdownMenu>
+                <DropdownMenu buttonStyle={{...toolbarStyles.commonButtonStyle, ...toolbarStyles.buttonHover, minWidth: 'auto', verticalAlign: 'middle'}} startIcon={<BorderColorRoundedIcon fontSize='small'/>} >
+                    <ColorPicker
+                        color={defaultBackgroundColor}
+                        onChange={backgroundColorChangeHandler}
+                    />
+                </DropdownMenu>
                 <Divider className='divider' orientation="vertical" flexItem/>
                 <FormatTextMenu hasFormat={hasFormat}/>
                 <Divider orientation="vertical" flexItem/>
@@ -174,8 +178,8 @@ const Toolbar = ({editable}) => {
                         onClick={() => setIsClearEditorDialogOpen(true)}>
                         <ClearRoundedIcon/>
                     </IconButton>
-                <AlertDialog isOpen={isClearEditorDialogOpen} onClose={() => setIsClearEditorDialogOpen(false)} title='Clear Editor' confirmButtonTitle='Clear' content="Are you sure you want to clear out the editor's content?" confirmHandler={clearEditorContent} />
                 </Tooltip>
+                <AlertDialog isOpen={isClearEditorDialogOpen} onClose={() => setIsClearEditorDialogOpen(false)} title='Clear Editor' confirmButtonTitle='Clear' content="Are you sure you want to clear out the editor's content?" confirmHandler={clearEditorContent} />
                 <Tooltip title="Clear formatting">
                     <IconButton sx={{...toolbarStyles.buttonHover}} size="small" onClick={clearFormatting}>
                         <DeleteOutlineRoundedIcon/>

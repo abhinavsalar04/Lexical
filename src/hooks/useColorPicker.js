@@ -19,14 +19,14 @@ const useColorPicker = () => {
         [editor],
     );
 
-    const onFontColorSelect = useCallback(
+    const fontColorChangeHandler = useCallback(
         (value) => {
             applyStyleText({color: value});
         },
         [applyStyleText],
     );
 
-    const onBgColorSelect = useCallback(
+    const backgroundColorChangeHandler = useCallback(
         (value) => {
             applyStyleText({'background-color': value});
         },
@@ -34,8 +34,8 @@ const useColorPicker = () => {
     );
 
     return {
-        onFontColorSelect,
-        onBgColorSelect,
+        fontColorChangeHandler,
+        backgroundColorChangeHandler,
     };
 };
 

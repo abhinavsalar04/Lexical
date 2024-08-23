@@ -6,13 +6,6 @@ const toolbarStyles = {
         borderBottom: `2px solid ${grey[300]}`,
         overflow: "auto",
     },
-    activeButtonStyle: {
-        padding: "-2px 2px",
-        borderRadius: "6px",
-        "&:hover": {
-            backgroundColor: grey[100],
-        },
-    },
     pointerEventsNone: {
         cursor: "not-allowed",
     },
@@ -24,9 +17,12 @@ const toolbarStyles = {
             backgroundColor: "transparent",
         },
     },
+    commonButtonStyle:{
+        color: grey[600],
+    },
     buttonHover: {
         "&:hover": {
-            borderRadius: "8px",
+            borderRadius: "6px",
             backgroundColor: grey[100],
         },
     }

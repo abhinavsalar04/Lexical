@@ -512,7 +512,7 @@
     top: 0;
   }
   .LexicalEditor__tableCellHeader {
-    background-color: #f2f3f5;
+    /* background-color: #f2f3f5; */
     text-align: start;
   }
   .LexicalEditor__tableCellSelected {
@@ -663,12 +663,13 @@
   
   .table-cell-action-button {
     background-color: none;
+    width: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 0;
     position: relative;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #222;
     display: inline-block;
     cursor: pointer;

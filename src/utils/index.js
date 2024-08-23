@@ -1,4 +1,4 @@
-import {blue, blueGrey} from "@mui/material/colors";
+
 import {grey} from "@mui/material/colors";
 
 export const getMenuButtonStyle = ({open, isMdViewport}) => ({
@@ -8,7 +8,7 @@ export const getMenuButtonStyle = ({open, isMdViewport}) => ({
     px: "10px",
     textTransform: "none",
     "&:hover": {
-            borderRadius: "8px",
+            borderRadius: "6px",
             backgroundColor: grey[100],
     },
     ...(open && {
@@ -28,16 +28,16 @@ export const getMenuButtonStyle = ({open, isMdViewport}) => ({
 export const getActiveBtnStyle = (isActive) => ({
     ...(isActive ? {
         color: grey[700],
-        borderRadius: "8px",
+        borderRadius: "6px",
         backgroundColor: grey[200],
         "&:hover": {
-            borderRadius: "8px",
+            borderRadius: "6px",
             backgroundColor: grey[300]
         },
     }:{
         color: grey[700],
         "&:hover": {
-            borderRadius: "8px",
+            borderRadius: "6px",
             backgroundColor: grey[100]
         },
     }),

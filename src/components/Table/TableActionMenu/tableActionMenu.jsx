@@ -3,7 +3,7 @@ import {
   TableCellHeaderStates,
 } from '@lexical/table';
 import { createPortal } from "react-dom";
-import ColorPicker from "../../ColorPickerAdvance/ColorPicker";
+import ColorPicker from "../../ColorPicker/ColorPicker";
 import { useTableActionMenuController } from "./tableActionMenu.controller";
 
   export function TableActionMenu({
@@ -22,7 +22,6 @@ import { useTableActionMenuController } from "./tableActionMenu.controller";
       cellMerge,
       showColorPickerModal,
     })
-      e
     let mergeCellButton = null;
     if (cellMerge) {
       if (canMergeCells) {

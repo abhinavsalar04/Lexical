@@ -19,6 +19,7 @@ import {$isCodeNode} from '@lexical/code';
 import {$isTableSelection} from '@lexical/table';
 import getSelectedNode from "../utils/getSelectedNode";
 import useModal from "./useModal";
+import useCustomCommands from "./useCustomCommands";
 
 const LowPriority = 1;
 const useEditorToolbar = () => {
@@ -32,7 +33,8 @@ const useEditorToolbar = () => {
     const [modal, showModal] = useModal()
     const [canUndo, setCanUndo] = useState(false)
     const [canRedo, setCanRedo] = useState(false)
-
+    const {clearEditorContent} = useCustomCommands();
+    const [isClearEditorDialogOpen, setIsClearEditorDialogOpen] = useState(false)
 
     // This function runs every time the editor state changes.
     const updateToolbar = useCallback(() => {
@@ -197,6 +199,9 @@ const useEditorToolbar = () => {
         });
     }, [editor]);
     return {
+        isClearEditorDialogOpen,
+        setIsClearEditorDialogOpen,
+        clearEditorContent,
         canUndo,
         canRedo,
         fontSize,

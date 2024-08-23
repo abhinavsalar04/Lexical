@@ -3,13 +3,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Button from '@mui/material/Button';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import useBlockFormat from "../../hooks/useBlockFormat";
 import {blockTypeToBlockName} from "../../constants";
 import {useMediaQuery} from "@mui/material";
 import {getMenuButtonStyle} from "../../utils";
 
-const BlockFormatMenu = ({blockType}) => {
+const BlockFormatMenu = ({blockType, customStyle = {}}) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -26,23 +26,22 @@ const BlockFormatMenu = ({blockType}) => {
     return (
         <>
             <Button
+                variant="text"
                 aria-haspopup={anchorEl ? "true" : undefined}
                 aria-controls={anchorEl ? "block-format-menu" : undefined}
                 onClick={handleClickIconButton}
                 size="large"
-                color='inherit'
-                variant="text"
+                // color='inherit'
                 sx={{
                     ...getMenuButtonStyle({open, isMdViewport}),
-                    color: "info.main"
                 }}
                 startIcon={getSelectedBlock()?.icon}
-                endIcon={<KeyboardArrowDownIcon sx={{color: "info.main"}}/>}
+                endIcon={<KeyboardArrowDownRoundedIcon />}
             >
                 {isMdViewport ? blockTypeToBlockName[blockType] : null}
             </Button>
             <Menu
-                id="block-format-menu"
+                // id="block-format-menu"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}

@@ -1,13 +1,13 @@
 import { useState} from 'react';
 import Button from "@mui/material/Button";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import FormatColorTextRoundedIcon from '@mui/icons-material/FormatColorTextRounded';
 import Menu from "@mui/material/Menu";
 import {formatMenuItems} from "../../constants";
 import MenuItem from "@mui/material/MenuItem";
 import {FORMAT_TEXT_COMMAND} from "lexical";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import TextFormatIcon from '@mui/icons-material/TextFormat';
 import {useMediaQuery} from "@mui/material";
 import {getMenuButtonStyle} from "../../utils";
 
@@ -33,8 +33,8 @@ const FormatTextMenu = ({hasFormat}) => {
                 variant="text"
                 color="info"
                 sx={getMenuButtonStyle({open, isMdViewport})}
-                startIcon={<TextFormatIcon/>}
-                endIcon={<KeyboardArrowDownIcon sx={{color: "grey.600"}}/>}
+                startIcon={<FormatColorTextRoundedIcon/>}
+                endIcon={<KeyboardArrowDownRoundedIcon sx={{color: "grey.600"}}/>}
             >
                 {isMdViewport ? "Format" : null}
             </Button>

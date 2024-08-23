@@ -12,13 +12,13 @@ import {
     INSERT_UNORDERED_LIST_COMMAND,
     REMOVE_LIST_COMMAND,
 } from '@lexical/list';
-import NotesIcon from '@mui/icons-material/Notes';
-import TitleIcon from '@mui/icons-material/Title';
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import FormatListNumberedOutlinedIcon from "@mui/icons-material/FormatListNumberedOutlined";
+import NotesRoundedIcon from '@mui/icons-material/NotesRounded';
+import TitleRoundedIcon from '@mui/icons-material/TitleRounded';
+import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
+import FormatListNumberedRoundedIcon from '@mui/icons-material/FormatListNumberedRounded';
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import FormatQuoteOutlinedIcon from "@mui/icons-material/FormatQuoteOutlined";
-import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined";
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import {$createCodeNode} from "@lexical/code";
 
 const useBlockFormat = (props) => {
@@ -125,55 +125,55 @@ const useBlockFormat = (props) => {
         {
             name: 'Normal',
             blockType: 'paragraph',
-            icon: <NotesIcon/>,
+            icon: <NotesRoundedIcon/>,
             onClick: formatParagraph,
         },
         {
             name: 'Heading 1',
             blockType: 'h1',
-            icon: <TitleIcon/>,
+            icon: <TitleRoundedIcon/>,
             onClick: () => formatHeading("h1")
         },
         {
             name: 'Heading 2',
             blockType: 'h2',
-            icon: <TitleIcon/>,
+            icon: <TitleRoundedIcon/>,
             onClick: () => formatHeading("h2")
         },
         {
             name: 'Heading 3',
             blockType: 'h3',
-            icon: <TitleIcon/>,
+            icon: <TitleRoundedIcon/>,
             onClick: () => formatHeading("h3")
         },
         {
             name: 'Heading 4',
             blockType: 'h4',
-            icon: <TitleIcon/>,
+            icon: <TitleRoundedIcon/>,
             onClick: () => formatHeading("h4")
         },
         {
             name: 'Heading 5',
             blockType: 'h5',
-            icon: <TitleIcon/>,
+            icon: <TitleRoundedIcon/>,
             onClick: () => formatHeading("h5")
         },
         {
             name: 'Heading 6',
             blockType: 'h6',
-            icon: <TitleIcon/>,
+            icon: <TitleRoundedIcon/>,
             onClick: () => formatHeading("h6")
         },
         {
             name: 'Bulleted List',
             blockType: 'bullet',
-            icon: <FormatListBulletedIcon/>,
+            icon: <FormatListBulletedRoundedIcon/>,
             onClick: formatBulletList,
         },
         {
             name: 'Numbered List',
             blockType: 'number',
-            icon: <FormatListNumberedOutlinedIcon/>,
+            icon: <FormatListNumberedRoundedIcon/>,
             onClick: formatNumberedList,
         },
         {
@@ -191,7 +191,7 @@ const useBlockFormat = (props) => {
         {
             name: "Code Block",
             blockType: 'code',
-            icon: <CodeOutlinedIcon/>,
+            icon: <CodeRoundedIcon/>,
             onClick: formatCode
         },
     ];

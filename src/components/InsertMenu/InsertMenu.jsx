@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Button from "@mui/material/Button";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import AddIcon from '@mui/icons-material/Add';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import useInsertMenu from "../../hooks/useInsertMenu";
 import { getMenuButtonStyle } from "../../utils";
 import { ListItemText, useMediaQuery } from "@mui/material";
@@ -31,8 +31,8 @@ const InsertMenu = () => {
                 variant="text"
                 color="info"
                 sx={getMenuButtonStyle({ open, isMdViewport })}
-                startIcon={<AddIcon />}
-                endIcon={<KeyboardArrowDownIcon sx={{ color: "grey.600" }} />}
+                startIcon={<AddRoundedIcon />}
+                endIcon={<KeyboardArrowDownRoundedIcon sx={{ color: "grey.600" }} />}
             >
                 {isMdViewport ? "Insert" : null}
             </Button>

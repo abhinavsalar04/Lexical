@@ -2,23 +2,15 @@ import { grey } from "@mui/material/colors";
 
 const toolbarStyles = {
     root: {
-        padding: "5px",
+        padding: "6px",
         borderBottom: `2px solid ${grey[300]}`,
         overflow: "auto",
     },
     activeButtonStyle: {
-        borderRadius: "8px",
-        backgroundColor: grey[200],
+        padding: "-2px 2px",
+        borderRadius: "6px",
         "&:hover": {
-            borderRadius: "8px",
-            backgroundColor: grey[300],
-        },
-    },
-    inactiveButtonStyle: {
-        color: grey[800],
-        "&:hover": {
-            borderRadius: "8px",
-            backgroundColor: grey[200],
+            backgroundColor: grey[100],
         },
     },
     pointerEventsNone: {
@@ -26,22 +18,12 @@ const toolbarStyles = {
     },
     disabledButtonStyle: {
         color: grey[400],
+        padding: "0 2px",
+        borderRadius: "6px",
         "&:hover": {
             backgroundColor: "transparent",
         },
     },
-    inActiveButtonHoverStyle: {
-        "&:hover": {
-            borderRadius: "8px",
-            backgroundColor: grey[200],
-        },
-    },
-    avtiveButtonHoverStyle: {
-        "&:hover": {
-            borderRadius: "8px",
-            backgroundColor: grey[300],
-        },
-    }
 };
 
 export default toolbarStyles;

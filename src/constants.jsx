@@ -1,15 +1,15 @@
-import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
-import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
-import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
+import FormatAlignLeftRoundedIcon from '@mui/icons-material/FormatAlignLeftRounded';
+import FormatAlignRightRoundedIcon from '@mui/icons-material/FormatAlignRightRounded';
+import FormatAlignCenterRoundedIcon from '@mui/icons-material/FormatAlignCenterRounded';
+import FormatAlignJustifyRoundedIcon from '@mui/icons-material/FormatAlignJustifyRounded';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import StrikethroughSIcon from '@mui/icons-material/StrikethroughS';
-import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import SubscriptIcon from '@mui/icons-material/Subscript';
-import SuperscriptIcon from '@mui/icons-material/Superscript';
-import CodeIcon from '@mui/icons-material/Code';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
+import FormatUnderlinedRoundedIcon from '@mui/icons-material/FormatUnderlinedRounded';
+import SubscriptRoundedIcon from '@mui/icons-material/SubscriptRounded';
+import SuperscriptRoundedIcon from '@mui/icons-material/SuperscriptRounded';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 import {CodeHighlightNode, CodeNode} from "@lexical/code";
 import {LinkNode, AutoLinkNode} from "@lexical/link";
 import {ListItemNode, ListNode} from "@lexical/list";
@@ -223,22 +223,22 @@ export const initialHasFormat = {
 export const alignMenuItems = [
     {
         name: "Left Align",
-        icon: <AlignHorizontalLeftIcon />,
+        icon: <FormatAlignLeftRoundedIcon />,
         payload: "left",
     },
     {
         name: "Center Align",
-        icon: <FormatAlignCenterIcon />,
+        icon: <FormatAlignCenterRoundedIcon />,
         payload: "center",
     },
     {
         name: "Right Align",
-        icon: <AlignHorizontalRightIcon />,
+        icon: <FormatAlignRightRoundedIcon />,
         payload: "right",
     },
     {
         name: "Justify Align",
-        icon: <FormatAlignJustifyIcon />,
+        icon: <FormatAlignJustifyRoundedIcon />,
         payload: "justify",
     }
 ];
@@ -256,32 +256,32 @@ export const formatMenuItems = [
     },
     {
         name: "Strikethrough",
-        icon: <StrikethroughSIcon />,
+        icon: <StrikethroughSRoundedIcon />,
         payload: "strikethrough",
     },
     {
         name: "Underline",
-        icon: <FormatUnderlinedIcon />,
+        icon: <FormatUnderlinedRoundedIcon />,
         payload: "underline",
     },
     {
         name: "Code",
-        icon: <CodeIcon />,
+        icon: <CodeRoundedIcon />,
         payload: "code",
     },
     {
         name: "Highlight",
-        icon: <BorderColorIcon />,
+        icon: <BorderColorRoundedIcon />,
         payload: "highlight",
     },
     {
         name: "Subscript",
-        icon: <SubscriptIcon />,
+        icon: <SubscriptRoundedIcon />,
         payload: "subscript",
     },
     {
         name: "Superscript",
-        icon: <SuperscriptIcon />,
+        icon: <SuperscriptRoundedIcon />,
         payload: "superscript",
     }
 ];

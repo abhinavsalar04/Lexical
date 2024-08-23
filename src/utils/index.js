@@ -1,27 +1,31 @@
-import {blueGrey} from "@mui/material/colors";
+import {blue, blueGrey} from "@mui/material/colors";
 import {grey} from "@mui/material/colors";
 
 export const getMenuButtonStyle = ({open, isMdViewport}) => ({
-    color: "grey.600",
+    color: grey[700],
     p: "5px",
+    px: "10px",
     textTransform: "none",
+    "&:hover": {
+            backgroundColor: grey[100],
+    },
     ...(open && {
         "& .MuiButton-endIcon": {
             transition: "all 0.2s ease-in-out",
             transform: "rotate(180deg)",
-        }
+        },
     }),
     // Remove margin from icons when viewport is less than 960px
     ...(!isMdViewport && {
         "& .MuiButton-startIcon, & .MuiButton-endIcon": {
             m: 0,
-        }
+        },
     }),
 });
 
 export const getActiveBtnStyle = (isActive) => ({
     ...(isActive ? {
-        // color: 'white',
+        color: grey[700],
         borderRadius: "8px",
         backgroundColor: grey[200],
         "&:hover": {
@@ -29,9 +33,10 @@ export const getActiveBtnStyle = (isActive) => ({
             backgroundColor: grey[300]
         },
     }:{
+        color: grey[700],
         "&:hover": {
             borderRadius: "8px",
-            backgroundColor: grey[200]
+            backgroundColor: grey[100]
         },
     }),
 });

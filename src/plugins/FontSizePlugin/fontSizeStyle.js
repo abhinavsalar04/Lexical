@@ -4,33 +4,34 @@ export const useFontSizeStyles = () => ({
   fontSizeWrapper: {
     display: "flex",
     alignItems: "center",
-    gap: "4px"
+    gap: "2px"
   },
   fontSizeInput: {
     fontWeight: 'bold',
     fontSize: '14px',
     color: '#777',
     borderRadius: '5px',
+    border: `2px solid ${grey[600]}`,
     borderColor: grey[500],
-    height: '30px',
+    height: '28px',
     padding: '2px 4px',
     textAlign: 'center',
     width: '30px',
   },
   fontSizeIncrementButton: {
+    minWidth: 0,
     color: grey[600],
     cursor: "pointer",
-    borderRadius: '5px',
     '&:hover': {
-      backgroundColor: grey[700],
+      backgroundColor: grey[100],
     },
   },
   fontSizeDecrementButton: {
+    minWidth: 0,
     color: grey[600],
     cursor: "pointer",
-    borderRadius: '15px',
     '&:hover': {
-      backgroundColor: grey[200],
+      backgroundColor: grey[100],
     },
   },
 })

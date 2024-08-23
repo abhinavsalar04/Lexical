@@ -22,7 +22,7 @@ import { useTableActionMenuController } from "./tableActionMenu.controller";
       cellMerge,
       showColorPickerModal,
     })
-      
+      e
     let mergeCellButton = null;
     if (cellMerge) {
       if (canMergeCells) {

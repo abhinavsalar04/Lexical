@@ -8,7 +8,6 @@ export default function TableActionMenuPlugin({
   cellMerge = false,
 }) {
   const isEditable = useLexicalEditable();
-  console.log("TableActionMenuPlugin")
   return createPortal(
     isEditable ? (
       <TableCellActionMenuContainer

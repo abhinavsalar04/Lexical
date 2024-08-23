@@ -8,7 +8,6 @@ import {useTableMenuContainerController} from "./tableMenuContainer.controller"
   }) {
 
     const {tableCellNode, menuButtonRef, menuRootRef, isMenuOpen, setIsMenuOpen, colorPickerModal, showColorPickerModal} = useTableMenuContainerController({anchorElem});
-    console.log("TableCellActionMenuContainer")
     return (
       <div className="table-cell-action-button-container" ref={menuButtonRef}>
         {tableCellNode != null && (

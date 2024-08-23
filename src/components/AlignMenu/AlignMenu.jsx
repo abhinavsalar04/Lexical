@@ -3,11 +3,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Button from '@mui/material/Button';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import {FORMAT_ELEMENT_COMMAND} from "lexical";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {alignMenuItems} from "../../constants";
-import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
+import FormatAlignLeftRoundedIcon from '@mui/icons-material/FormatAlignLeftRounded';
 import { useMediaQuery } from '@mui/material';
 import {getMenuButtonStyle} from "../../utils";
 
@@ -34,8 +34,8 @@ const AlignMenu = () => {
                 variant="text"
                 color="info"
                 sx={getMenuButtonStyle({open, isMdViewport})}
-                startIcon={<AlignHorizontalLeftIcon/>}
-                endIcon={<KeyboardArrowDownIcon sx={{color: "grey.600"}}/>}
+                startIcon={<FormatAlignLeftRoundedIcon/>}
+                endIcon={<KeyboardArrowDownRoundedIcon sx={{color: "grey.600"}}/>}
             >
                 {isMdViewport ? "Align" : null}
             </Button>

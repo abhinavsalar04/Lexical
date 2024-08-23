@@ -20,10 +20,19 @@ export const getMenuButtonStyle = ({open, isMdViewport}) => ({
 });
 
 export const getActiveBtnStyle = (isActive) => ({
-    ...(isActive && {
-        color: 'white',
-        backgroundColor: blueGrey[900],
-        "&:hover": {backgroundColor: blueGrey[900]},
+    ...(isActive ? {
+        // color: 'white',
+        borderRadius: "8px",
+        backgroundColor: grey[200],
+        "&:hover": {
+            borderRadius: "8px",
+            backgroundColor: grey[300]
+        },
+    }:{
+        "&:hover": {
+            borderRadius: "8px",
+            backgroundColor: grey[200]
+        },
     }),
 });
 

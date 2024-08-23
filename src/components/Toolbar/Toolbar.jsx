@@ -1,5 +1,5 @@
 import {FORMAT_TEXT_COMMAND, UNDO_COMMAND, REDO_COMMAND,} from 'lexical';
-import {Divider} from '../../ui/Divider/divider';
+// import {Divider} from '../../ui/Divider/divider';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import StrikethroughSIcon from '@mui/icons-material/StrikethroughS';
@@ -28,10 +28,13 @@ import FloatingLinkEditor from '../FloatingLinkEditor';
 import { createPortal } from 'react-dom';
 import InsertMenu from '../InsertMenu/InsertMenu';
 import FontSizePlugin from "../../plugins/FontSizePlugin/fontSize"
+import { Divider } from '@mui/material';
 
 
 const Toolbar = ({editable}) => {
     const {
+        canUndo,
+        canRedo,
         fontSize,
         editor, 
         hasFormat,
@@ -52,19 +55,31 @@ const Toolbar = ({editable}) => {
 
     return (
         <Stack direction="row" gap={1} sx={toolbarStyles.root}>
-            <div>
+            <div style={{ display: "flex", gap: "4px" }}>
                 <Tooltip title="Undo (Ctrl + Z)">
                     <IconButton
+                        sx={{
+                            ...(canUndo
+                                ? toolbarStyles.activeButtonStyle
+                                : { ...toolbarStyles.pointerEventsNone, ...toolbarStyles.disabledButtonStyle }),
+                        }}
                         size="small"
-                        onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}>
-                        <ReplayRoundedIcon/>
+                        onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}
+                    >
+                        <ReplayRoundedIcon style={{ fontSize: "18px", margin: "0px 2px"}} />
                     </IconButton>
                 </Tooltip>
                 <Tooltip title="Redo (Ctrl + Y)">
                     <IconButton
+                        sx={{
+                            ...(canRedo
+                                ? toolbarStyles.activeButtonStyle
+                                : { ...toolbarStyles.pointerEventsNone, ...toolbarStyles.disabledButtonStyle }),
+                        }}
                         size="small"
-                        onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}>
-                        <ReplayRoundedIcon style={{transform: "scale(-1, 1)"}}/>
+                        onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}
+                    >
+                        <ReplayRoundedIcon style={{ transform: "scale(-1, 1)", fontSize: "18px", margin: "0px 2px" }} />
                     </IconButton>
                 </Tooltip>
             </div>

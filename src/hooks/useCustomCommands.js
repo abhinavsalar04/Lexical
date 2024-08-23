@@ -17,9 +17,6 @@ const useCustomCommands = () => {
                 paragraph.select();
             });
             return true;
-            /**
-             * We clear all content and return true to mark this event as handled. Thus, no other succeeding command handler is called.
-             */
         },
         COMMAND_PRIORITY_LOW
     );

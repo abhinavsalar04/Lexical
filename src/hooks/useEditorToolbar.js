@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
-import {$isRootOrShadowRoot, $isTextNode} from "lexical";
+import {$isRootOrShadowRoot, $isTextNode, CAN_REDO_COMMAND, CAN_UNDO_COMMAND} from "lexical";
 import {
     mergeRegister,
     $findMatchingParent,
@@ -20,6 +20,7 @@ import {$isTableSelection} from '@lexical/table';
 import getSelectedNode from "../utils/getSelectedNode";
 import useModal from "./useModal";
 
+const LowPriority = 1;
 const useEditorToolbar = () => {
 
     const [editor] = useLexicalComposerContext();
@@ -29,6 +30,8 @@ const useEditorToolbar = () => {
     const [isLink, setIsLink] = useState(false);
     const [fontSize, setFontSize] = useState('15px');
     const [modal, showModal] = useModal()
+    const [canUndo, setCanUndo] = useState(false)
+    const [canRedo, setCanRedo] = useState(false)
 
 
     // This function runs every time the editor state changes.
@@ -156,6 +159,22 @@ const useEditorToolbar = () => {
                     updateToolbar();
                 });
             }),
+            editor.registerCommand(
+                CAN_UNDO_COMMAND,
+                (payload) => {
+                  setCanUndo(payload);
+                  return false;
+                },
+                LowPriority,
+              ),
+              editor.registerCommand(
+                CAN_REDO_COMMAND,
+                (payload) => {
+                  setCanRedo(payload);
+                  return false;
+                },
+                LowPriority,
+              ),
         );
     }, [updateToolbar, editor]);
 
@@ -178,6 +197,8 @@ const useEditorToolbar = () => {
         });
     }, [editor]);
     return {
+        canUndo,
+        canRedo,
         fontSize,
         editor,
         modal, 

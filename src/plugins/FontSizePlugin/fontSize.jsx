@@ -103,15 +103,14 @@ export default function FontSize({
   return (
     <>
       <div style={styles.fontSizeWrapper}>
-      <Button
-        
+      <Button 
         disabled={
           disabled ||
           (selectionFontSize !== '' &&
             Number(inputValue) <= MIN_ALLOWED_FONT_SIZE)
         }
         onClick={() => handleButtonClick(UPDATE_FONT_SIZE_TYPE.decrement)}
-        style={{...styles.fontSizeDecrementButton}}
+        sx={{...styles.fontSizeDecrementButton}}
       >
       <RemoveRoundedIcon fontSize='small'  />
       </Button>
@@ -134,7 +133,7 @@ export default function FontSize({
             Number(inputValue) >= MAX_ALLOWED_FONT_SIZE)
         }
         onClick={() => handleButtonClick(UPDATE_FONT_SIZE_TYPE.increment)}
-        style={styles.fontSizeIncrementButton}
+        sx={styles.fontSizeIncrementButton}
       >
       <AddRoundedIcon fontSize='small' />
       </Button>

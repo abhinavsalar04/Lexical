@@ -2,7 +2,7 @@ import { grey } from "@mui/material/colors";
 
 const toolbarStyles = {
     root: {
-        padding: "6px",
+        paddingBottom: "6px",
         borderBottom: `2px solid ${grey[300]}`,
         overflow: "auto",
     },
@@ -24,6 +24,12 @@ const toolbarStyles = {
             backgroundColor: "transparent",
         },
     },
+    buttonHover: {
+        "&:hover": {
+            borderRadius: "8px",
+            backgroundColor: grey[100],
+        },
+    }
 };
 
 export default toolbarStyles;

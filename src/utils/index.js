@@ -3,10 +3,12 @@ import {grey} from "@mui/material/colors";
 
 export const getMenuButtonStyle = ({open, isMdViewport}) => ({
     color: grey[700],
+    minWidth: 'auto',
     p: "5px",
     px: "10px",
     textTransform: "none",
     "&:hover": {
+            borderRadius: "8px",
             backgroundColor: grey[100],
     },
     ...(open && {

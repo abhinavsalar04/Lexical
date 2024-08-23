@@ -53,7 +53,7 @@ const Toolbar = ({editable}) => {
     return (
         <div >
             <Stack direction="row" gap={1} sx={{...toolbarStyles.root}} >
-                <div style={{ display: "flex", gap: "4px" }}>
+                <div style={{ display: "flex", gap: "" }}>
                     <Tooltip title="Undo (Ctrl + Z)">
                         <IconButton
                             sx={{
@@ -84,13 +84,11 @@ const Toolbar = ({editable}) => {
                 <Divider  orientation="vertical" flexItem/>
                 <BlockFormatMenu customStyle={{...toolbarStyles}} blockType={blockType}/>
                 <Divider orientation="vertical" flexItem/>
-                <div style={{display: "flex", verticalAlign: "middle"}}>
-                    <FontSizePlugin 
-                        selectionFontSize={fontSize?.slice(0, -2)}
-                        editor={editor}
-                        disabled={false}
-                    />
-                </div>
+                <FontSizePlugin 
+                    selectionFontSize={fontSize?.slice(0, -2)}
+                    editor={editor}
+                    disabled={false}
+                />
                 <Divider orientation="vertical" flexItem />
                 <Tooltip title="Bold (Ctrl + B)">
                     <IconButton
@@ -170,6 +168,7 @@ const Toolbar = ({editable}) => {
                 <Divider orientation="vertical" flexItem/>
                 <Tooltip title="Clear editor">
                     <IconButton
+                        sx={{...toolbarStyles.buttonHover}}
                         size="small"
                         disabled={isEditorEmpty}
                         onClick={() => setIsClearEditorDialogOpen(true)}>
@@ -178,7 +177,7 @@ const Toolbar = ({editable}) => {
                 <AlertDialog isOpen={isClearEditorDialogOpen} onClose={() => setIsClearEditorDialogOpen(false)} title='Clear Editor' confirmButtonTitle='Clear' content="Are you sure you want to clear out the editor's content?" confirmHandler={clearEditorContent} />
                 </Tooltip>
                 <Tooltip title="Clear formatting">
-                    <IconButton size="small" onClick={clearFormatting}>
+                    <IconButton sx={{...toolbarStyles.buttonHover}} size="small" onClick={clearFormatting}>
                         <DeleteOutlineRoundedIcon/>
                     </IconButton>
                 </Tooltip>

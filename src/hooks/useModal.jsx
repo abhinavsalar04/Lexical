@@ -2,6 +2,26 @@ import { useCallback, useMemo, useState } from "react";
 import { Modal, Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
+const styles = {
+  box: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+    outline: 0,
+    width: '400px',
+    borderRadius: '8px',
+  },
+  iconButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    color: 'grey.500',
+  }
+}
 export default function useModal() {
   const [modalContent, setModalContent] = useState(null);
 
@@ -19,30 +39,14 @@ export default function useModal() {
       <Modal
         open={!!modalContent}
         onClose={onClose}
-        disableBackdropClick={!closeOnClickOutside}
+        BackdropProps={{ onClick: closeOnClickOutside ? onClose :() => {} }}
       >
         <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-            outline: 0,
-            width: '400px', // Adjust width as needed
-            borderRadius: '8px', // Optional: rounded corners
-          }}
+          sx={styles.box}
         >
           <IconButton
             onClick={onClose}
-            sx={{
-              position: 'absolute',
-              top: 8,
-              right: 8,
-              color: 'grey.500',
-            }}
+            sx={styles.iconButton}
           >
             <CloseIcon />
           </IconButton>

@@ -24,6 +24,7 @@ import { CollapsibleContainerNode } from "./CustomNodes/CollapsibleContainer/Col
 import { CollapsibleContentNode } from "./CustomNodes/CollapsibleContainer/CollapsibleContentNode";
 import { LayoutContainerNode } from "./CustomNodes/ColumnLayout/LayoutContainerNode";
 import { LayoutItemNode } from "./CustomNodes/ColumnLayout/LayoutItemNode";
+import { YouTubeNode } from './CustomNodes/YoutubeNode/YoutubeNode';
 
 export const theme = {
     blockCursor: 'blockCursor',
@@ -166,6 +167,7 @@ export const EDITOR_NODES = [
     LayoutContainerNode,
     LayoutItemNode,
     HorizontalRuleNode,
+    YouTubeNode
 ];
 
 /**

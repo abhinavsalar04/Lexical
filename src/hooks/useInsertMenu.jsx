@@ -10,6 +10,9 @@ import { INSERT_PAGE_BREAK } from '../plugins/PageBreakPlugin';
 import {INSERT_COLLAPSIBLE_COMMAND} from "../plugins/CollapsiblePlugin/index"
 import {InsertTableDialog} from "../plugins/TablePlugin"
 import InsertLayoutDialog from "../plugins/ColumnLayoutPlugin/InsertColumnLayoutDialog"
+import {AutoEmbedDialog} from "../components/AutoEmbedDialog/AutoEmbedDialog"
+import SmartDisplayRoundedIcon from '@mui/icons-material/SmartDisplayRounded';
+import { INSERT_YOUTUBE_COMMAND } from '../plugins/YoutubePlugin';
 const useInsertMenu = ({editor, showModal}) => {
     const insertMenuItems = [
         {
@@ -57,6 +60,32 @@ const useInsertMenu = ({editor, showModal}) => {
                 onClose={onClose}
               /> 
             }, true)
+        },
+        {
+            title: 'Youtube Video',
+            icon: <SmartDisplayRoundedIcon />,
+            // icon: <Icon icon={'mingcute:youtube-fill'} fontSize={'20'}></Icon>,
+            exampleUrl: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
+            insertNode: (editor, result) => {
+            editor.dispatchCommand(INSERT_YOUTUBE_COMMAND, result.id);
+            },
+            keywords: ['youtube', 'video'],
+            type: 'youtube-video',
+            validateURL: async (url) => {
+                const match = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/.exec(url);
+                const id = match ? (match?.[2].length === 11 ? match[2] : null) : null;
+                if (id != null) {
+                    return {id, url};
+                }
+                return null;
+            },
+            onClick: function () {
+                const self = this; 
+                return showModal('Insert Youtube Video', function (onClose) {
+                        return <AutoEmbedDialog embedConfig={{...self}} onClose={onClose}></AutoEmbedDialog>
+                    }, true
+                )
+          }
         }
 
     ]

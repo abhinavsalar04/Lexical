@@ -18,7 +18,6 @@ export const DropdownMenu = ({ variant = "text", color= "inherit", buttonLabel, 
     handleClose();
   };
 
-  console.log(buttonStyle)
   return (
     <>
         <Button

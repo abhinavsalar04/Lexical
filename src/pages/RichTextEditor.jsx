@@ -25,6 +25,7 @@ import {DEFAULT_EDITOR_SETTINGS} from "../constants"
 import TableActionMenuPlugin from "../components/Table/index"
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { LayoutPlugin } from '../plugins/ColumnLayoutPlugin/ColumnLayoutPlugin';
+import YouTubePlugin from '../plugins/YoutubePlugin';
 export const RichTextEditor = ({content, setContent}) => {
     return (
         <LexicalComposer
@@ -54,6 +55,7 @@ export const RichTextEditor = ({content, setContent}) => {
                 <PageBreakPlugin />
                 <CollapsiblePlugin />
                 <LayoutPlugin />
+                <YouTubePlugin />
                 <TablePlugin
                     hasCellMerge={DEFAULT_EDITOR_SETTINGS?.tableCellMerge ?? false}
                     hasCellBackgroundColor={DEFAULT_EDITOR_SETTINGS?.tableCellBackgroundColor ?? false}

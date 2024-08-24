@@ -1,8 +1,4 @@
-export default function invariant(
-    cond,
-    message,
-    ...args
-  ) {
+export default function invariant(cond, message, ...args) {
     if (cond) {
       return;
     }

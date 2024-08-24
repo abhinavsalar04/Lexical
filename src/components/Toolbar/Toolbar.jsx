@@ -19,7 +19,7 @@ import BlockFormatMenu from "../BlockFormatMenu/BlockFormatMenu";
 import AlignMenu from "../AlignMenu/AlignMenu";
 import FormatTextMenu from "../FormatTextMenu/FormatTextMenu";
 import useEditorToolbar from "../../hooks/useEditorToolbar";
-import toolbarStyles from "./styles";
+import {toolbarStyles} from "./styles";
 import {getActiveBtnStyle} from "../../utils";
 import FloatingLinkEditor from '../FloatingLinkEditor';
 import { createPortal } from 'react-dom';

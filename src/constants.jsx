@@ -25,6 +25,7 @@ import { CollapsibleContentNode } from "./CustomNodes/CollapsibleContainer/Colla
 import { LayoutContainerNode } from "./CustomNodes/ColumnLayout/LayoutContainerNode";
 import { LayoutItemNode } from "./CustomNodes/ColumnLayout/LayoutItemNode";
 import { YouTubeNode } from './CustomNodes/YoutubeNode/YoutubeNode';
+import {OverflowNode} from '@lexical/overflow';
 
 export const theme = {
     blockCursor: 'blockCursor',
@@ -167,7 +168,8 @@ export const EDITOR_NODES = [
     LayoutContainerNode,
     LayoutItemNode,
     HorizontalRuleNode,
-    YouTubeNode
+    YouTubeNode,
+    OverflowNode
 ];
 
 /**

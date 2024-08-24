@@ -26,6 +26,7 @@ import TableActionMenuPlugin from "../components/Table/index"
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { LayoutPlugin } from '../plugins/ColumnLayoutPlugin/ColumnLayoutPlugin';
 import YouTubePlugin from '../plugins/YoutubePlugin';
+import { CharacterLimitPlugin } from '../plugins/CharacterLLimitPlugin';
 export const RichTextEditor = ({content, setContent}) => {
     return (
         <LexicalComposer
@@ -63,6 +64,7 @@ export const RichTextEditor = ({content, setContent}) => {
                 <ImagePlugin captionsEnabled={false} />
                 <HorizontalRulePlugin />
                 <CheckListPlugin/>
+                <CharacterLimitPlugin />
             </Stack>
         </LexicalComposer>
     )

@@ -47,7 +47,14 @@ export const useFloatingLinkEditor = ({editor}) => {
   const [linkUrl, setLinkUrl] = useState("");
   const [isEditMode, setEditMode] = useState(false);
   const [lastSelection, setLastSelection] = useState(null);
+  const [error, setError] = useState(null)
 
+
+  function validateURL (link){
+      const urlRegex = /^$|(https?|ftp):\/\/([a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+)(:\d{1,5})?([/?].*)?$/
+      return { valid: urlRegex.test(link), error: "Invalid URL" }
+  }
+  
   const updateLinkEditor = useCallback(() => {
     editor.getEditorState().read(() => {
       const selection = $getSelection();
@@ -103,22 +110,34 @@ export const useFloatingLinkEditor = ({editor}) => {
     }
   }, [isEditMode, updateLinkEditor]);
 
-  const handleDone = () => {
+  const handleConfirm = () => {
     if (lastSelection) {
       editor.update(() => {
+        const status = validateURL(linkUrl)
+        if(!status || !status.valid){
+          setError(status.error)
+          return;
+        }
+        setError(null)
         if (linkUrl) editor.dispatchCommand(TOGGLE_LINK_COMMAND, linkUrl);
         setEditMode(false);
       });
     }
   };
 
+  function handleDelteLink(){
+    editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+  }
+
   return {
+    error,
     editorRef,
     inputRef,
     linkUrl,
     isEditMode,
     setLinkUrl,
     setEditMode,
-    handleDone,
+    handleConfirm,
+    handleDelteLink
   };
 };

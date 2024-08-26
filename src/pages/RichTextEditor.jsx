@@ -27,6 +27,7 @@ import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { LayoutPlugin } from '../plugins/ColumnLayoutPlugin/ColumnLayoutPlugin';
 import YouTubePlugin from '../plugins/YoutubePlugin';
 import { CharacterLimitPlugin } from '../plugins/CharacterLLimitPlugin';
+import IframePlugin from '../plugins/IFramePlugin';
 export const RichTextEditor = ({content, setContent}) => {
     return (
         <LexicalComposer
@@ -57,6 +58,7 @@ export const RichTextEditor = ({content, setContent}) => {
                 <CollapsiblePlugin />
                 <LayoutPlugin />
                 <YouTubePlugin />
+                <IframePlugin />
                 <TablePlugin
                     hasCellMerge={DEFAULT_EDITOR_SETTINGS?.tableCellMerge ?? false}
                     hasCellBackgroundColor={DEFAULT_EDITOR_SETTINGS?.tableCellBackgroundColor ?? false}

@@ -12,7 +12,9 @@ import {InsertTableDialog} from "../plugins/TablePlugin"
 import InsertLayoutDialog from "../plugins/ColumnLayoutPlugin/InsertColumnLayoutDialog"
 import {AutoEmbedDialog} from "../components/AutoEmbedDialog/AutoEmbedDialog"
 import SmartDisplayRoundedIcon from '@mui/icons-material/SmartDisplayRounded';
+import CodeOffRoundedIcon from '@mui/icons-material/CodeOffRounded';
 import { INSERT_YOUTUBE_COMMAND } from '../plugins/YoutubePlugin';
+import { INSERT_IFRAME_COMMAND } from '../plugins/IFramePlugin';
 const useInsertMenu = ({editor, showModal}) => {
     const insertMenuItems = [
         {
@@ -86,7 +88,33 @@ const useInsertMenu = ({editor, showModal}) => {
                     }, true
                 )
           }
-        }
+        },
+        {
+            title: 'Embed Iframe',
+            icon: <CodeOffRoundedIcon />,
+            exampleUrl: 'Enter valid iframe code.Ex- <iframe src = "src_url" .....></iframe>',
+            insertNode: (editor, result) => {
+            editor.dispatchCommand(INSERT_IFRAME_COMMAND, result.id);
+            },
+            keywords: ['iframe', 'video', 'code'],
+            type: 'iframe-embed',
+            validateURL: async (inputText) => {
+                const iframeRegex = /<iframe\s+(?:[^>]*?\s+)?src=["']([^"']+)["'][^>]*><\/iframe>/;
+                const match = iframeRegex.exec(inputText);
+            
+                if (match && match[1]) {
+                    return { id: match[1], url: match[1] }; // Extracted src URL
+                }
+                return null;
+            },
+            onClick: function () {
+                const self = this; 
+                return showModal('Embed Iframe', function (onClose) {
+                        return <AutoEmbedDialog embedConfig={{...self}} onClose={onClose}></AutoEmbedDialog>
+                    }, true
+                )
+          }
+        },
 
     ]
 

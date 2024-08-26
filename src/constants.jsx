@@ -26,6 +26,7 @@ import { LayoutContainerNode } from "./CustomNodes/ColumnLayout/LayoutContainerN
 import { LayoutItemNode } from "./CustomNodes/ColumnLayout/LayoutItemNode";
 import { YouTubeNode } from './CustomNodes/YoutubeNode/YoutubeNode';
 import {OverflowNode} from '@lexical/overflow';
+import { IframeNode } from './CustomNodes/IFrameNode/IFrameNode';
 
 export const theme = {
     blockCursor: 'blockCursor',
@@ -169,7 +170,8 @@ export const EDITOR_NODES = [
     LayoutItemNode,
     HorizontalRuleNode,
     YouTubeNode,
-    OverflowNode
+    OverflowNode,
+    IframeNode
 ];
 
 /**

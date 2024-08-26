@@ -1,26 +1,28 @@
+import { Height } from "@mui/icons-material";
+
 export const useAutoEmbedStyles = () => ({
-    inputWrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: '10px',
+  modalContainer: {
+    width: '100%',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    borderRadius: '6px',
+    boxSizing: 'border-box',
+    '@media (maxWidth: 768px)': {
+      width: '100%',
+      padding: '20px',
+      borderRadius: '0px',
     },
-    inputLabel: {
-      display: 'flex',
-      flex: 1,
-      color: '#666',
-    },
-    inputInput: {
-      display: 'flex',
-      flex: 2,
-      border: '1px solid #999',
-      paddingTop: '7px',
-      paddingBottom: '7px',
-      paddingLeft: '10px',
-      paddingRight: '10px',
-      fontSize: '16px',
-      borderRadius: '5px',
-      minWidth: 0,
-    },
-  });
-  
+  },
+  inputWrapper: {
+    width: '100%',
+    borderRadius: '6px',
+  },
+  textarea: {
+    width: '100%',
+    padding: "10px",
+    borderRadius: '6px',
+    height: 'calc(20vh - 10px)',
+    resize: 'none',
+    boxSizing: 'border-box',
+  },
+});

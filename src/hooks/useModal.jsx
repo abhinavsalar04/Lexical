@@ -24,6 +24,7 @@ const styles = {
 }
 export default function useModal() {
   const [modalContent, setModalContent] = useState(null);
+  const [modalStyle, setModalStyle] = useState({})
 
   const onClose = useCallback(() => {
     setModalContent(null);
@@ -42,7 +43,7 @@ export default function useModal() {
         BackdropProps={{ onClick: closeOnClickOutside ? onClose :() => {} }}
       >
         <Box
-          sx={styles.box}
+          sx={{...styles.box, ...modalStyle}}
         >
           <IconButton
             onClick={onClose}
@@ -65,13 +66,15 @@ export default function useModal() {
     (
       title,
       getContent,
-      closeOnClickOutside = false
+      closeOnClickOutside = false,
+      styles
     ) => {
       setModalContent({
         closeOnClickOutside,
         content: getContent(onClose),
         title,
       });
+      setModalStyle(styles);
     },
     [onClose]
   );

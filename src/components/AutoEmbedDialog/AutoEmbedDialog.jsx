@@ -33,7 +33,6 @@ export function AutoEmbedDialog({
           if (embedConfig != null && inputText != null && urlMatch != null) {
             Promise.resolve(embedConfig.validateURL(inputText)).then(
               (parseResult) => {
-                console.log(parseResult)
                 setEmbedResult(parseResult);
               },
             );
@@ -52,32 +51,33 @@ export function AutoEmbedDialog({
     };
    
     return (
-      <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
-        <div style={{...styles?.inputWrapper}}>
-          <input
-            type="text"
-            style={{...styles?.inputInput}}
-            placeholder={embedConfig.exampleUrl}
-            value={text}
-            data-test-id={`${embedConfig.type}-embed-modal-url`}
-            onChange={(e) => {
-              const {value} = e.target;
-              setText(value);
-              validateText(value);
-            }}
-          />
-        </div>
-        <div style={{alignSelf: "flex-end"}}>
-           <Button
-            variant="contained"
-            color="inherit"
-            style={{boxShadow: 'none', textTransform: 'none'}}
-            disabled={!embedResult}
-            onClick={onClick}
-            data-test-id={`${embedConfig.type}-embed-modal-submit-btn`}>
-            Embed
-          </Button>
+      <div style={styles.modalContainer}>
+        <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
+          <div style={{...styles.inputWrapper}}>
+            <textarea
+              style={{...styles.textarea}}
+              placeholder={embedConfig.exampleUrl}
+              value={text}
+              data-test-id={`${embedConfig.type}-embed-modal-url`}
+              onChange={(e) => {
+                const { value } = e.target;
+                setText(value);
+                validateText(value);
+              }}
+            />
+          </div>
+          <div style={{alignSelf: "flex-end"}}>
+            <Button
+              variant="contained"
+              color="inherit"
+              style={{boxShadow: 'none', textTransform: 'none'}}
+              disabled={!embedResult}
+              onClick={onClick}
+              data-test-id={`${embedConfig.type}-embed-modal-submit-btn`}>
+              Embed
+            </Button>
+          </div>
         </div>
       </div>
     );
-   }
+}

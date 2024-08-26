@@ -2,6 +2,7 @@ import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import {$insertNodeToNearestRoot} from '@lexical/utils';
 import {COMMAND_PRIORITY_EDITOR, createCommand} from 'lexical';
 import {useEffect} from 'react';
+import {getAttributesFromHTMLContent} from "../utils/getAttributesFromHTMLContent"
 
 import {$createYouTubeNode, YouTubeNode} from '../CustomNodes/YoutubeNode/YoutubeNode';
 
@@ -18,7 +19,8 @@ export default function YouTubePlugin() {
     return editor.registerCommand(
       INSERT_YOUTUBE_COMMAND,
       (payload) => {
-        const youTubeNode = $createYouTubeNode(payload);
+        const {width, height} = getAttributesFromHTMLContent(payload?.url)
+        const youTubeNode = $createYouTubeNode(payload?.id, width, height);
         $insertNodeToNearestRoot(youTubeNode);
 
         return true;

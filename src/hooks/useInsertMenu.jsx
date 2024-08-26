@@ -15,6 +15,19 @@ import SmartDisplayRoundedIcon from '@mui/icons-material/SmartDisplayRounded';
 import CodeOffRoundedIcon from '@mui/icons-material/CodeOffRounded';
 import { INSERT_YOUTUBE_COMMAND } from '../plugins/YoutubePlugin';
 import { INSERT_IFRAME_COMMAND } from '../plugins/IFramePlugin';
+
+const customModalStyle = {
+    width: '60%',
+    height: "50vh",
+    maxWidth: '1200px',
+    '@media (max-width: 768px)': {
+      width: '90%',
+    },
+    '@media (max-width: 540px)': {
+      width: '100%',
+    },
+}
+
 const useInsertMenu = ({editor, showModal}) => {
     const insertMenuItems = [
         {
@@ -69,7 +82,8 @@ const useInsertMenu = ({editor, showModal}) => {
             // icon: <Icon icon={'mingcute:youtube-fill'} fontSize={'20'}></Icon>,
             exampleUrl: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
             insertNode: (editor, result) => {
-            editor.dispatchCommand(INSERT_YOUTUBE_COMMAND, result.id);
+                console.log(result)
+            editor.dispatchCommand(INSERT_YOUTUBE_COMMAND, result);
             },
             keywords: ['youtube', 'video'],
             type: 'youtube-video',
@@ -94,16 +108,16 @@ const useInsertMenu = ({editor, showModal}) => {
             icon: <CodeOffRoundedIcon />,
             exampleUrl: 'Enter valid iframe code.Ex- <iframe src = "src_url" .....></iframe>',
             insertNode: (editor, result) => {
-            editor.dispatchCommand(INSERT_IFRAME_COMMAND, result.id);
+                console.log("iframe result", result)
+            editor.dispatchCommand(INSERT_IFRAME_COMMAND, result);
             },
             keywords: ['iframe', 'video', 'code'],
             type: 'iframe-embed',
             validateURL: async (inputText) => {
                 const iframeRegex = /<iframe\s+(?:[^>]*?\s+)?src=["']([^"']+)["'][^>]*><\/iframe>/;
                 const match = iframeRegex.exec(inputText);
-            
-                if (match && match[1]) {
-                    return { id: match[1], url: match[1] }; // Extracted src URL
+                if (match && match[0] && match[1]) {
+                    return { src: match[1], data: match[0] }; // Extracted src URL
                 }
                 return null;
             },
@@ -111,9 +125,9 @@ const useInsertMenu = ({editor, showModal}) => {
                 const self = this; 
                 return showModal('Embed Iframe', function (onClose) {
                         return <AutoEmbedDialog embedConfig={{...self}} onClose={onClose}></AutoEmbedDialog>
-                    }, true
+                    }, true, {...customModalStyle}
                 )
-          }
+            }
         },
 
     ]

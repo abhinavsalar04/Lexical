@@ -1,3 +1,4 @@
+import { backdropClasses } from '@mui/material';
 import { grey } from '@mui/material/colors';
 
 const editorStyles = {
@@ -8,11 +9,12 @@ const editorStyles = {
         color: 'black',
         fontWeight: 400,
         textAlign: 'left',
+        height: '100%', // Make sure the container takes full height
+        display: 'flex',
+        flexDirection: 'column',
     },
     contentEditable: {
         position: 'relative',
-        minHeight: '150px',
-        maxHeight: '500px',
         resize: 'none',
         outline: '0',
         fontSize: '1rem',
@@ -20,20 +22,18 @@ const editorStyles = {
         tabSize: '1',
         padding: '15px',
         overflow: 'auto',
-        '& hr': {
-            border: 'none',
-            height: '2px',
-            backgroundColor: grey[400],
-        },
+        maxHeight: '200px',
+        border: '1px solid #ccc',
+        borderRadius: '4px',
     },
     placeholder: {
         position: 'absolute',
-        top: '67px',
+        top: '16px',
         left: '15px',
         right: '28px',
         fontSize: '15px',
         color: grey[500],
-        overflow: 'hidden',
+        // overflow: 'hidden',
         textOverflow: 'ellipsis',
         userSelect: 'none',
         pointerEvents: 'none',

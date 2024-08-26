@@ -13,8 +13,12 @@ import InsertLayoutDialog from "../plugins/ColumnLayoutPlugin/InsertColumnLayout
 import {AutoEmbedDialog} from "../components/AutoEmbedDialog/AutoEmbedDialog"
 import SmartDisplayRoundedIcon from '@mui/icons-material/SmartDisplayRounded';
 import CodeOffRoundedIcon from '@mui/icons-material/CodeOffRounded';
+import HtmlRoundedIcon from '@mui/icons-material/HtmlRounded';
 import { INSERT_YOUTUBE_COMMAND } from '../plugins/YoutubePlugin';
 import { INSERT_IFRAME_COMMAND } from '../plugins/IFramePlugin';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { INSERT_EMBED_CODE_COMMAND} from '../plugins/EmbedCodePlugin';
+import { $generateHtmlFromNodes} from "@lexical/html";
 
 const customModalStyle = {
     width: '60%',
@@ -82,8 +86,7 @@ const useInsertMenu = ({editor, showModal}) => {
             // icon: <Icon icon={'mingcute:youtube-fill'} fontSize={'20'}></Icon>,
             exampleUrl: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
             insertNode: (editor, result) => {
-                console.log(result)
-            editor.dispatchCommand(INSERT_YOUTUBE_COMMAND, result);
+                editor.dispatchCommand(INSERT_YOUTUBE_COMMAND, result);
             },
             keywords: ['youtube', 'video'],
             type: 'youtube-video',
@@ -97,7 +100,7 @@ const useInsertMenu = ({editor, showModal}) => {
             },
             onClick: function () {
                 const self = this; 
-                return showModal('Insert Youtube Video', function (onClose) {
+                return showModal('Insert Youtube Video link/iframe', function (onClose) {
                         return <AutoEmbedDialog embedConfig={{...self}} onClose={onClose}></AutoEmbedDialog>
                     }, true
                 )
@@ -105,11 +108,11 @@ const useInsertMenu = ({editor, showModal}) => {
         },
         {
             title: 'Embed Iframe',
-            icon: <CodeOffRoundedIcon />,
+            // icon: <CodeOffRoundedIcon />,
+            icon: <Icon icon={'mdi:iframe-brackets-outline'} fontSize={'22'}></Icon>,
             exampleUrl: 'Enter valid iframe code.Ex- <iframe src = "src_url" .....></iframe>',
             insertNode: (editor, result) => {
-                console.log("iframe result", result)
-            editor.dispatchCommand(INSERT_IFRAME_COMMAND, result);
+                editor.dispatchCommand(INSERT_IFRAME_COMMAND, result);
             },
             keywords: ['iframe', 'video', 'code'],
             type: 'iframe-embed',
@@ -124,7 +127,32 @@ const useInsertMenu = ({editor, showModal}) => {
             onClick: function () {
                 const self = this; 
                 return showModal('Embed Iframe', function (onClose) {
-                        return <AutoEmbedDialog embedConfig={{...self}} onClose={onClose}></AutoEmbedDialog>
+                        return <AutoEmbedDialog  embedConfig={{...self}} onClose={onClose}></AutoEmbedDialog>
+                    }, true, {...customModalStyle}
+                )
+            }
+        },
+        {
+            title: 'Source Code',
+            _id: 'Lexical_SourceCode',
+            // icon: <HtmlRoundedIcon />,
+            icon: <Icon icon={'dashicons:html'} fontSize={'22'} />,
+            exampleUrl: 'Write your html code here...',
+            insertNode: (editor, result) => {
+            editor.dispatchCommand(INSERT_EMBED_CODE_COMMAND, result);
+            },
+            keywords: ['source', 'code', 'html'],
+            type: 'souorce-code',
+            validateURL: async (inputText) => {
+                return inputText 
+            },
+            onClick: function () {
+                const self = this; 
+                return showModal('Source Code', function (onClose) {
+                    const editorHtmlContent = editor.getEditorState().read(() => {
+                        return $generateHtmlFromNodes(editor);
+                    });
+                        return <AutoEmbedDialog value={editorHtmlContent} embedConfig={{...self}} onClose={onClose}></AutoEmbedDialog>
                     }, true, {...customModalStyle}
                 )
             }

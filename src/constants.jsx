@@ -27,6 +27,9 @@ import { LayoutItemNode } from "./CustomNodes/ColumnLayout/LayoutItemNode";
 import { YouTubeNode } from './CustomNodes/YoutubeNode/YoutubeNode';
 import {OverflowNode} from '@lexical/overflow';
 import { IframeNode } from './CustomNodes/IFrameNode/IFrameNode';
+import { EmbedCodeNode } from './CustomNodes/EmbedCode/EmbedCodeNode';
+import { Link } from '@mui/material';
+
 
 export const theme = {
     blockCursor: 'blockCursor',
@@ -171,8 +174,21 @@ export const EDITOR_NODES = [
     HorizontalRuleNode,
     YouTubeNode,
     OverflowNode,
-    IframeNode
+    IframeNode,
+    EmbedCodeNode
 ];
+
+export const LOW_FEATURE_EDITOR_NODES = [
+    CodeNode,
+    CodeHighlightNode,
+    HeadingNode,
+    AutoLinkNode,
+    LinkNode,
+    QuoteNode,
+    ListNode,
+    ListItemNode,
+    OverflowNode
+] 
 
 /**
  * Catch any errors that occur during Lexical updates and log them
@@ -188,6 +204,7 @@ export const initialConfig= {
     theme,
     nodes: EDITOR_NODES,
     onError,
+    className: 'LexicalEditorContainer'
     // editable: false,
 };
 

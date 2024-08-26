@@ -2,8 +2,6 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { Button } from "@mui/material";
 import { useMemo, useState } from "react";
 import {useAutoEmbedStyles} from "./autoEmbedDialogStyle"
-import { URL_MATCHER } from "@lexical/react/LexicalAutoEmbedPlugin";
-
 
 const debounce = (callback, delay) => {
   let timeoutId;
@@ -17,11 +15,12 @@ const debounce = (callback, delay) => {
 
  
 export function AutoEmbedDialog({
+    value = "",
     embedConfig,
     onClose,
    }) {
-    
-    const [text, setText] = useState('');
+    console.log("value: ", value)
+    const [text, setText] = useState(value);
     const [editor] = useLexicalComposerContext();
     const [embedResult, setEmbedResult] = useState(null);
     const styles = useAutoEmbedStyles()
@@ -29,8 +28,7 @@ export function AutoEmbedDialog({
     const validateText = useMemo(
       () =>
         debounce((inputText) => {
-          const urlMatch = URL_MATCHER.exec(inputText);
-          if (embedConfig != null && inputText != null && urlMatch != null) {
+          if (embedConfig != null && inputText != null) {
             Promise.resolve(embedConfig.validateURL(inputText)).then(
               (parseResult) => {
                 setEmbedResult(parseResult);

@@ -5,6 +5,7 @@ function IframeComponent({ className, format, nodeKey, src, width, height }) {
   return (
     <BlockWithAlignableContents className={className} format={format} nodeKey={nodeKey}>
       <iframe
+        style={{maxWidth: "100%"}}
         width={width || "560"}
         height={height || "315"}
         src={src}

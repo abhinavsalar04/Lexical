@@ -38,7 +38,7 @@ export const RichTextEditor = ({content, setContent}) => {
                     <RichFeatureTextEditorToolbar editable/>
                     <RichTextPlugin
                         contentEditable={
-                            <ContentEditable sx={editorStyles.contentEditable}/>
+                            <ContentEditable className="LexicalEditor_ContentEditable_root"/>
                         }
                         placeholder={<Placeholder style={{...editorStyles.placeholder}}>Enter some rich text...</Placeholder>}
                         ErrorBoundary={LexicalErrorBoundary}

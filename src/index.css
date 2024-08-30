@@ -23,3 +23,18 @@ body {
   min-height: 100vh;
   background-color: #e5e7eb;
 } */
+
+.LexicalEditor_ContentEditable_root{
+  border: 0;
+  font-size: 15px;
+  display: block;
+  position: relative;
+  outline: 0;
+  position: relative;
+  resize: none;
+  outline: 0;
+  caret-color: #757575; /* Assuming grey[600] is #757575 */
+  tab-size: 1;
+  border: 0;
+  padding: 5px 10px;
+}

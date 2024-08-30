@@ -10,9 +10,13 @@ const [lowContent, setLowContent] = useState("")
   return (
     <>
       <RichTextEditor content={content} setContent={setContent} />
-      <div  dangerouslySetInnerHTML={{__html: content}}></div>
-      <LowFeatureTextEditor content={lowContent} setContent={setLowContent} />
-      <div dangerouslySetInnerHTML={{__html: lowContent}}></div>
+      <div className="">
+        <span style={{fontWeight: "bold", color: "grey", marginTop: "2rem"}}>Editor exported content in HTML: </span>
+        {/* <div style={{padding: "20px"}}>{content}</div> */}
+        <div  dangerouslySetInnerHTML={{__html: content}}></div>
+      </div>
+      {/* <LowFeatureTextEditor content={lowContent} setContent={setLowContent} />
+      <div dangerouslySetInnerHTML={{__html: lowContent}}></div> */}
     </>
   );
 };
